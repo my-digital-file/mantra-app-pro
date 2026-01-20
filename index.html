@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>प्रथम मंत्र</title>
+    <title>Pratham Mantra - Final</title>
     
-    <!-- PWA & Offline Support -->
+    <!-- PWA Settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#020617">
@@ -18,330 +18,481 @@
             --btn-size: 75px;
         }
 
-        /* --- कॉन्फ़िगरेशन: GitHub 'assets' फोल्डर के अनुसार --- */
-        <script>
-            const PATHS = {
-                background: "./assets/bg.jpg",
-                dp: "./assets/dp.png", 
-                bell: "https://www.soundjay.com/buttons/sounds/beep-07.mp3",
-                ting: "https://www.soundjay.com/buttons/sounds/button-16.mp3",
-                // फोटो 1.jpg, 2.jpg...7.jpg
-                images: ["./assets/1.jpg", "./assets/2.jpg", "./assets/3.jpg", "./assets/4.jpg", "./assets/5.jpg", "./assets/6.jpg", "./assets/7.jpg"],
-                // मंत्र 1.mp3, 2.mp3...7.mp3
-                audio: ["./assets/1.mp3", "./assets/2.mp3", "./assets/3.mp3", "./assets/4.mp3", "./assets/5.mp3", "./assets/6.mp3", "./assets/7.mp3"]
-            };
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; margin: 0; padding: 0; }
+        
+        body { 
+            background: #000; 
+            color: white; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            height: 100vh; 
+            overflow: hidden; 
+            display: flex; 
+            justify-content: center; 
+        }
 
-            const ADS_TOP = "नशा मुक्ति अभियान: संत रामपाल जी महाराज के ज्ञान से लाखों लोगों ने हर जानलेवा नशा पूरी तरह त्याग कर सुखी जीवन अपनाया है।";
-            const ADS_BOTTOM = "दहेज मुक्त भारत: बिना किसी लेन-देन के हजारों 'रमैणी' शादियां समाज में एक नई और स्वच्छ परंपरा की शुरुआत कर रही हैं।";
-        </script>
+        #app-shell { 
+            width: 100%; 
+            max-width: 500px; 
+            height: 100%; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            background-size: cover; 
+            background-position: center; 
+            transition: background 0.5s ease;
+        }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { margin: 0; background: #000; color: white; font-family: 'Segoe UI', system-ui, sans-serif; height: 100vh; overflow: hidden; display: flex; justify-content: center; }
+        .tint { position: absolute; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(5px); z-index: 0; }
 
-        #app-shell { width: 100%; max-width: 500px; height: 100%; position: relative; display: flex; flex-direction: column; background-size: cover; background-position: center; transition: 0.3s; }
-        .tint { position: absolute; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(4px); z-index: 0; }
-
-        /* Ad Pati */
-        .ad-row { height: 38px; background: #111827; display: flex; align-items: center; padding: 0 10px; z-index: 10; border-bottom: 1.5px solid var(--accent); position: relative; }
-        .ad-row.bottom { border-bottom: none; border-top: 1.5px solid var(--accent); }
-        .ad-tag { background: var(--accent); color: black; font-size: 8px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; text-transform: uppercase; }
-        .ad-scroll { flex: 1; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
-        .ad-go { background: #fff; color: #000; border: none; padding: 3px 12px; border-radius: 12px; font-size: 10px; font-weight: 900; cursor: pointer; margin-left: 10px; }
+        /* Ad Strips */
+        .ad-row { height: 40px; background: #111827; display: flex; align-items: center; padding: 0 12px; z-index: 10; border-bottom: 2px solid var(--accent); position: relative; }
+        .ad-row.bottom { border-bottom: none; border-top: 2px solid var(--accent); }
+        .ad-tag { background: var(--accent); color: black; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; text-transform: uppercase; }
+        .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
 
         /* Header */
-        header { height: 75px; background: var(--glass); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .founder-btn { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .dp-box { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent); position: relative; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
-        .dp-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
-
-        /* Main View */
-        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; }
-        .stats { text-align: center; margin-bottom: 35px; }
-        #total-count { font-size: 100px; font-weight: 900; line-height: 1; text-shadow: 0 10px 20px rgba(0,0,0,0.8); }
-        .stats-lbl { font-size: 11px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
-
-        /* Grid Layout (1-3-3) */
-        .btn-grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
-        .btn-row { display: flex; gap: 18px; justify-content: center; width: 100%; }
-
-        /* 3D Dynamics & Opacity Logic */
-        .m-btn {
-            width: var(--btn-size); height: var(--btn-size); border-radius: 50%; border: none;
-            background: linear-gradient(145deg, #f59e0b, #d97706);
-            box-shadow: 0 6px 0 #92400e, 0 12px 25px rgba(0,0,0,0.6);
-            cursor: pointer; position: relative; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-            
-            /* Logic: Locked 20% */
-            opacity: 0.2; filter: blur(5px) grayscale(0.8); pointer-events: none;
+        header { 
+            height: 75px; 
+            background: var(--glass); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 15px; 
+            z-index: 10; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
-        .m-btn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        .m-btn span { font-size: 24px; font-weight: 900; color: white; display: none; }
-
-        /* Logic: NEXT target: 70% visible */
-        .m-btn.target { opacity: 0.7; filter: blur(1.5px); transform: scale(1.15); border: 3.5px solid #fff; box-shadow: 0 0 35px var(--accent); pointer-events: auto; }
         
-        /* Logic: CLICKED: 100% visible, Clear */
-        .m-btn.done { opacity: 1 !important; filter: none !important; background: #10b981; box-shadow: 0 4px 0 #064e3b; transform: scale(1); pointer-events: none; }
+        .founder-btn { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .dp-box { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid var(--accent); position: relative; overflow: visible; }
+        .dp-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
+        .blue-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 1.5px solid #000; color: white; }
 
-        /* Logic: Round End: 80% blur */
-        .m-btn.idle { opacity: 0.8; filter: blur(2.5px); pointer-events: auto; }
+        /* Counter */
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; }
+        .stats { text-align: center; margin-bottom: 40px; }
+        #total-jap-num { font-size: 110px; font-weight: 900; line-height: 1; text-shadow: 0 10px 30px rgba(0,0,0,0.9); font-variant-numeric: tabular-nums; }
+        .count-lbl { font-size: 12px; color: var(--accent); letter-spacing: 6px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
-        .m-btn:active { transform: translateY(6px); box-shadow: 0 1px 0 #92400e; }
+        /* Grid Logic */
+        .btn-grid { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
+        .row { display: flex; gap: 20px; justify-content: center; width: 100%; }
+
+        /* Jaap Buttons */
+        .m-btn {
+            width: var(--btn-size); 
+            height: var(--btn-size); 
+            border-radius: 50%; 
+            border: none;
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            box-shadow: 0 8px 0 #92400e, 0 15px 30px rgba(0,0,0,0.6);
+            cursor: pointer; 
+            position: relative; 
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            
+            /* Initial State */
+            opacity: 0.2; 
+            filter: blur(4px) grayscale(0.9); 
+            pointer-events: none;
+        }
+
+        .m-btn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; transition: 0.3s; }
+        .m-btn .num-fallback { position: absolute; font-size: 28px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
+
+        /* Active: 70% opacity + Glow */
+        .m-btn.target { 
+            opacity: 0.75; 
+            filter: blur(0); 
+            transform: scale(1.15); 
+            border: 4px solid #fff; 
+            box-shadow: 0 0 40px var(--accent); 
+            pointer-events: auto;
+            z-index: 10;
+        }
+        
+        /* Done: 100% Green */
+        .m-btn.done { 
+            opacity: 1 !important; 
+            filter: none !important; 
+            background: #10b981; 
+            box-shadow: 0 4px 0 #064e3b; 
+            transform: scale(1); 
+            pointer-events: none; 
+        }
+
+        /* Round finished: 80% */
+        .m-btn.round-over { opacity: 0.8; filter: blur(2px); pointer-events: auto; }
+
+        .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 #92400e; }
 
         /* Footer */
-        .footer { background: var(--glass); padding: 18px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
-        .ctrl-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        input[type=range] { flex: 1; accent-color: var(--accent); cursor: pointer; height: 6px; }
-        .mode-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; transition: 0.2s; }
-        #auto-jaap-btn { width: 100%; padding: 16px; border-radius: 16px; border: none; background: linear-gradient(to right, #f59e0b, #ea580c); color: white; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 5px 25px rgba(234, 88, 12, 0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .footer { background: var(--glass); padding: 20px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
+        .ctrl-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
+        
+        .mode-btn { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; transition: 0.2s; border: none; color: white; }
+        .mode-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
+        
+        #auto-play-btn { 
+            width: 100%; 
+            padding: 18px; 
+            border-radius: 18px; 
+            border: none; 
+            background: linear-gradient(to right, #f59e0b, #ea580c); 
+            color: white; 
+            font-weight: 900; 
+            font-size: 18px; 
+            cursor: pointer; 
+            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4); 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
 
-        /* Modal Screens */
+        /* Modals */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; display: none; flex-direction: column; padding: 25px; animation: slideUp 0.3s forwards; }
         @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
-        .m-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 12px; }
-        .m-close { background: none; border: none; color: white; font-size: 40px; cursor: pointer; }
+        .modal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close-x { background: none; border: none; color: white; font-size: 45px; cursor: pointer; }
         
-        .f-card { text-align: center; background: #0f172a; padding: 25px; border-radius: 30px; border: 1px solid #1e293b; }
-        .f-bio { text-align: justify; font-size: 14px; line-height: 1.8; color: #94a3b8; background: rgba(255,255,255,0.03); padding: 18px; border-radius: 18px; height: 280px; overflow-y: auto; margin: 15px 0; border: 1px solid rgba(255,255,255,0.05); }
-        .action-link { width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; border-radius: 12px; font-weight: 800; margin-top: 10px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .f-card { text-align: center; background: #0f172a; padding: 30px; border-radius: 35px; border: 1px solid #1e293b; }
+        .bio-box { text-align: justify; font-size: 15px; line-height: 1.8; color: #94a3b8; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px; height: 320px; overflow-y: auto; margin: 20px 0; border: 1px solid rgba(255,255,255,0.05); }
+        .action-btn { width: 100%; padding: 18px; background: #3b82f6; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .action-btn:active { transform: scale(0.98); }
 
     </style>
 </head>
-<body onclick="unlockEngine()">
+<body onclick="unlockSoundEngine()">
 
     <div id="app-shell">
         <div class="tint"></div>
         
-        <!-- Top Ad Strip -->
+        <!-- Top Ad Pati -->
         <div class="ad-row">
-            <span class="ad-tag">More see</span>
-            <div id="top-ad" class="ad-scroll">...</div>
-            <button class="ad-go" onclick="window.open('https://www.jagatgurusantrampalji.org','_blank')">Visit</button>
+            <span class="ad-tag">Gyan</span>
+            <div id="ad-msg-top" class="ad-scroll">नशा मुक्ति अभियान: संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा छोड़ा।</div>
         </div>
 
         <header>
             <div class="founder-btn" onclick="openModal('founder-modal')">
                 <div class="dp-box">
-                    <img id="hdr-dp" src="" alt="DP">
-                    <span class="tick">✔</span>
+                    <img id="hdr-dp-img" src="./assets/dp.png" alt="DP">
+                    <span class="blue-tick">✔</span>
                 </div>
                 <div>
                     <div style="font-weight: 900; color: var(--accent); font-size: 20px; letter-spacing: -0.5px;">प्रथम मंत्र</div>
-                    <div style="font-size: 9px; color: #64748b; font-weight: bold;">Sant Rampal Ji Maharaj</div>
+                    <div style="font-size: 10px; color: #94a3b8; font-weight: 800;">Sant Rampal Ji Maharaj</div>
                 </div>
             </div>
-            <div style="display: flex; gap: 8px;">
-                <button class="mode-icon" style="background:none; color:white;" id="dl-icon" onclick="alert('Chrome Menu > Add to Home Screen par click karein')">📥</button>
-                <button class="mode-icon" style="background:none; color:white;" onclick="cycleMute()" id="mute-hdr">🔊</button>
-                <button class="mode-icon" style="background:none; color:white;" onclick="openModal('settings-modal')">⚙️</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="mode-btn" style="background:none;" id="install-trigger" onclick="alert('Chrome Menu > Install App/Add to Home Screen par click karein')">📥</button>
+                <button class="mode-btn" style="background:none;" onclick="cycleMuteMode()" id="mute-icon-hdr">🔊</button>
+                <button class="mode-btn" style="background:none;" onclick="openModal('settings-modal')">⚙️</button>
             </div>
         </header>
 
         <main>
             <div class="stats">
-                <div id="total-count">0</div>
-                <div class="stats-lbl">कुल मंत्र जाप</div>
+                <div id="total-jap-num">0</div>
+                <div class="count-lbl">Total Jaap Counting</div>
             </div>
 
-            <div class="btn-grid" id="m-grid">
-                <!-- 1-3-3 Grid -->
-                <div class="btn-row"><button id="btn-0" class="m-btn" onclick="onTap(0)"><span>1</span></button></div>
-                <div class="btn-row">
-                    <button id="btn-1" class="m-btn" onclick="onTap(1)"><span>2</span></button>
-                    <button id="btn-2" class="m-btn" onclick="onTap(2)"><span>3</span></button>
-                    <button id="btn-3" class="m-btn" onclick="onTap(3)"><span>4</span></button>
+            <div class="btn-grid" id="grid-container">
+                <!-- 1 Top Button -->
+                <div class="row"><button id="btn-0" class="m-btn" onclick="onMantraClick(0)"><span class="num-fallback">1</span></button></div>
+                <!-- 3 Middle Buttons -->
+                <div class="row">
+                    <button id="btn-1" class="m-btn" onclick="onMantraClick(1)"><span class="num-fallback">2</span></button>
+                    <button id="btn-2" class="m-btn" onclick="onMantraClick(2)"><span class="num-fallback">3</span></button>
+                    <button id="btn-3" class="m-btn" onclick="onMantraClick(3)"><span class="num-fallback">4</span></button>
                 </div>
-                <div class="btn-row">
-                    <button id="btn-4" class="m-btn" onclick="onTap(4)"><span>5</span></button>
-                    <button id="btn-5" class="m-btn" onclick="onTap(5)"><span>6</span></button>
-                    <button id="btn-6" class="m-btn" onclick="onTap(6)"><span>7</span></button>
+                <!-- 3 Bottom Buttons -->
+                <div class="row">
+                    <button id="btn-4" class="m-btn" onclick="onMantraClick(4)"><span class="num-fallback">5</span></button>
+                    <button id="btn-5" class="m-btn" onclick="onMantraClick(5)"><span class="num-fallback">6</span></button>
+                    <button id="btn-6" class="m-btn" onclick="onMantraClick(6)"><span class="num-fallback">7</span></button>
                 </div>
             </div>
         </main>
 
         <div class="footer">
             <div class="ctrl-row">
-                <div class="mode-icon" onclick="cycleMode()" id="sli-icon">⚡</div>
-                <input type="range" id="slider" min="1" max="100" value="50" oninput="onDrag()">
-                <div id="sli-txt" style="width: 45px; text-align: center; font-weight: 900; font-size: 14px;">1.0x</div>
+                <button class="mode-btn" onclick="switchSliderMode()" id="slider-mode-icon">⚡</button>
+                <input type="range" id="global-slider" min="1" max="100" value="50" oninput="handleSliderChange()">
+                <div id="slider-display-txt" style="width: 50px; text-align: center; font-weight: 900; font-size: 15px;">1.0x</div>
             </div>
-            <button id="auto-jaap-btn" onclick="autoJaap()">ऑटो प्ले (Start Auto Jaap)</button>
+            <button id="auto-play-btn" onclick="startAutoJaap()">Start Auto Jaap</button>
         </div>
 
         <div class="ad-row bottom">
-            <span class="ad-tag">More see</span>
-            <div id="bot-ad" class="ad-scroll">...</div>
-            <button class="ad-go" onclick="window.open('https://www.jagatgurusantrampalji.org','_blank')">Visit</button>
+            <span class="ad-tag">Social</span>
+            <div id="ad-msg-bot" class="ad-scroll">दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां समाज में नया बदलाव ला रही हैं।</div>
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Setting Modal -->
     <div id="settings-modal" class="modal">
-        <div class="m-head"><h2>Settings</h2><button class="m-close" onclick="closeModal('settings-modal')">×</button></div>
-        <button class="action-link" style="background:#1e293b;" onclick="openModal('help-modal')">❓ ऐप उपयोग विधि</button>
-        <button class="action-link" style="background:#1e293b;" onclick="openModal('founder-modal')">👨‍💻 Meet Founder</button>
-        <button class="action-link" style="background:#ef4444;" onclick="hardReset()">🔄 काउंटर जीरो करें</button>
+        <div class="modal-top"><h2>Settings</h2><button class="close-x" onclick="closeModal('settings-modal')">×</button></div>
+        <button class="action-btn" style="background:#1e293b;" onclick="openModal('help-modal')">❓ ऐप कैसे इस्तेमाल करें?</button>
+        <button class="action-btn" style="background:#1e293b;" onclick="openModal('founder-modal')">👨‍💻 Meet Founder</button>
+        <button class="action-btn" style="background:#ef4444;" onclick="hardResetCount()">🔄 काउंटर जीरो करें</button>
     </div>
 
     <div id="help-modal" class="modal">
-        <div class="m-head"><h2>उपयोग विधि</h2><button class="m-close" onclick="closeModal('help-modal')">×</button></div>
-        <div style="line-height: 2.0; font-size: 15px;">
-            1. <b>क्रमवार जाप:</b> 70% क्लियर बटन को दबाएं। 7 बटन पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>साउंड इंजन:</b> स्क्रीन पर पहली बार टच करने पर ऑडियो इंजन शुरू होगा।<br>
-            3. <b>ऑटो प्ले:</b> बटन दबाते ही सातों मंत्र खुद पूरे होंगे और गिनती बढ़ेगी।<br>
-            4. <b>स्लाइडर:</b> ⚡ आइकन से गति, आवाज और बटन साइज बदलें।<br>
-            5. <b>ऑटो रिसेट:</b> हर रात 12 बजे काउंटर 0 हो जाएगा।
+        <div class="modal-top"><h2>Help Guide</h2><button class="close-x" onclick="closeModal('help-modal')">×</button></div>
+        <div style="line-height: 2.2; font-size: 16px;">
+            1. <b>क्रम (Order):</b> केवल वही बटन दबायें जो 75% क्लियर और चमक रहा है।<br>
+            2. <b>गिनती (Count):</b> सातों बटन (1 से 7) पूरे होने पर ही 1 जाप काउंट होगा।<br>
+            3. <b>साउंड:</b> पहली बार क्लिक करने पर ऑडियो अनलॉक होगा।<br>
+            4. <b>ऑटो प्ले:</b> यह खुद बटनों को दबाएगा और अंत में गिनती बढ़ाएगा।<br>
+            5. <b>ऑटो रिसेट:</b> हर रात 12 बजे काउंटर अपने आप 0 हो जाएगा।
         </div>
     </div>
 
     <div id="founder-modal" class="modal">
-        <div class="m-head"><h2>Meet Founder</h2><button class="m-close" onclick="closeModal('founder-modal')">×</button></div>
+        <div class="modal-top"><h2>Meet Developer</h2><button class="close-x" onclick="closeModal('founder-modal')">×</button></div>
         <div class="f-card">
-            <img id="f-dp" src="" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 12px; object-fit: cover;">
-            <h3 style="margin: 5px 0; font-size: 22px;">Dinesh Sankhla <span style="color:#3b82f6;">✔</span></h3>
-            <div style="color:var(--accent); font-size:12px; font-weight:bold;">creat by dineshsankhla804@gmail.com</div>
-            <div class="f-bio">
-                <b>संत रामपाल जी महाराज के सामाजिक कार्य:</b><br><br>
-                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज आज के समय के एकमात्र तत्वदर्शी संत हैं। उन्होंने समाज से दहेज, नशा, और भ्रष्टाचार जैसी बुराइयों को खत्म कर एक स्वच्छ समाज का निर्माण किया है। अनुयायी बिना किसी दहेज के 'रमैणी' शादियां करते हैं। महाराज जी का मुख्य उद्देश्य विश्व शांति और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के मार्गदर्शन में लाखों परिवारों ने शास्त्रानुकूल भक्ति करके अपना जीवन सुखी बनाया है।
+            <img id="f-dp-big" src="./assets/dp.png" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover;">
+            <h3 style="margin: 10px 0; font-size: 26px;">Dinesh Sankhla <span style="color:#3b82f6;">✔</span></h3>
+            <div style="color:var(--accent); font-size:13px; font-weight:900;">dineshsankhla804@gmail.com</div>
+            <div class="bio-box">
+                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। 
+                <br><br>
+                उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं। लाखों अनुयायी 'रमैणी' विधि से बिना किसी दान-दहेज के शादियां कर रहे हैं।
             </div>
-            <button class="action-link" onclick="window.open('https://www.jagatgurusantrampalji.org','_blank')">🌐 Visit Official Website</button>
+            <button class="action-btn" onclick="window.open('https://www.jagatgurusantrampalji.org','_blank')">🌐 Visit Official Website</button>
         </div>
     </div>
 
-    <audio id="ply-m"></audio><audio id="ply-f"></audio>
+    <!-- Hidden Audio Players -->
+    <audio id="player-mantra"></audio>
+    <audio id="player-fx"></audio>
 
     <script>
-        let s = { count:0, step:0, mute:0, mode:0, spd:1.0, vol:1.0, size:75, date:new Date().toDateString(), auto:false, idle:false, unl:false };
+        // CONFIGURATION
+        const ASSETS = {
+            bg: "./assets/bg.jpg",
+            dp: "./assets/dp.png",
+            bell: "https://www.soundjay.com/buttons/sounds/beep-07.mp3",
+            ting: "https://www.soundjay.com/buttons/sounds/button-16.mp3",
+            images: ["./assets/1.jpg", "./assets/2.jpg", "./assets/3.jpg", "./assets/4.jpg", "./assets/5.jpg", "./assets/6.jpg", "./assets/7.jpg"],
+            audio: ["./assets/1.mp3", "./assets/2.mp3", "./assets/3.mp3", "./assets/4.mp3", "./assets/5.mp3", "./assets/6.mp3", "./assets/7.mp3"]
+        };
 
-        function save() { localStorage.setItem('pm_gh_vfinal_fix_v5', JSON.stringify(s)); }
-        function load() {
-            const d = localStorage.getItem('pm_gh_vfinal_fix_v5');
-            if(d) s = {...s, ...JSON.parse(d)};
-            if(s.date !== new Date().toDateString()) { s.count = 0; s.date = new Date().toDateString(); save(); }
-        }
+        const ADS_LIST = [
+            "नशा मुक्ति अभियान: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।",
+            "दहेज मुक्त भारत: बिना लेन-देन के हजारों 'रमैणी' शादियां हुई।",
+            "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट पर रजिस्टर करें।",
+            "पवित्र पुस्तक 'जीने की राह': इसे पढ़कर लाखों का जीवन सुखी हुआ।"
+        ];
 
-        // ब्राउज़र की साउंड सुरक्षा को अनलॉक करना
-        function unlockEngine() {
-            if(!s.unl) {
-                const f = document.getElementById('ply-f');
-                f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                f.play().then(() => { s.unl = true; console.log("Audio Unlocked"); }).catch(e => console.log("Audio Lock:", e));
+        // APP STATE
+        let app = {
+            count: 0, 
+            step: 0, 
+            mute: 0, // 0:All, 1:Beep Only, 2:Mute
+            mode: 0, // 0:Speed, 1:Vol, 2:Size
+            speed: 1.0, 
+            vol: 1.0, 
+            size: 75,
+            lastDate: new Date().toDateString(),
+            autoRunning: false,
+            roundFinished: false,
+            audioUnlocked: false
+        };
+
+        function saveState() { localStorage.setItem('pm_v2026_fixed_gold', JSON.stringify(app)); }
+        function loadState() {
+            const data = localStorage.getItem('pm_v2026_fixed_gold');
+            if(data) app = {...app, ...JSON.parse(data)};
+            // Midnight Auto-Reset Logic
+            if(app.lastDate !== new Date().toDateString()) {
+                app.count = 0;
+                app.lastDate = new Date().toDateString();
+                saveState();
             }
         }
 
-        function init() {
-            load();
-            document.getElementById('app-shell').style.backgroundImage = `url(${PATHS.background})`;
-            document.getElementById('hdr-dp').src = PATHS.dp;
-            document.getElementById('f-dp').src = PATHS.dp;
-            document.getElementById('top-ad').innerText = ADS_TOP;
-            document.getElementById('bot-ad').innerText = ADS_BOTTOM;
-            ui(); grid();
-        }
-
-        function ui() {
-            document.getElementById('total-count').innerText = s.count;
-            const icons = ['⚡', '🔊', '📏'], mIcons = ['🔊', '🎵', '🔇'];
-            document.getElementById('sli-icon').innerText = icons[s.mode];
-            document.getElementById('mute-hdr').innerText = mIcons[s.mute];
-            const sli = document.getElementById('master-slider'), txt = document.getElementById('sli-txt');
-            if(s.mode === 0) { sli.value = (s.spd - 0.5) * 40; txt.innerText = s.spd.toFixed(1) + 'x'; }
-            else if(s.mode === 1) { sli.value = s.vol * 100; txt.innerText = Math.round(s.vol * 100) + '%'; }
-            else { sli.value = (s.size - 50) * 2; txt.innerText = s.size + 'px'; }
-        }
-
-        function grid() {
-            for(let i=0; i<7; i++) {
-                const b = document.getElementById(`btn-${i}`);
-                const img = b.querySelector('img') || document.createElement('img');
-                const span = b.querySelector('span');
-                img.src = PATHS.images[i];
-                img.onerror = () => { img.style.display='none'; span.style.display='block'; };
-                img.onload = () => { img.style.display='block'; span.style.display='none'; };
-                if(!b.querySelector('img')) b.appendChild(img);
-                
-                b.style.setProperty('--btn-size', s.size + 'px');
-                b.classList.remove('target', 'done', 'idle');
-                if(s.idle) b.classList.add('idle');
-                else if(i === s.step) b.classList.add('target');
-                else if(i < s.step) b.classList.add('done');
+        // Browser Security Unlock
+        function unlockSoundEngine() {
+            if(!app.audioUnlocked) {
+                const fx = document.getElementById('player-fx');
+                fx.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+                fx.play().then(() => { 
+                    app.audioUnlocked = true; 
+                    console.log("Audio Unlocked");
+                }).catch(() => {});
             }
         }
 
-        async function onTap(i) {
-            // सीक्वेंस चेक: केवल टारगेट बटन काम करेगा
-            if(i !== s.step || s.auto) { 
-                if(s.idle && i === 0) { s.idle = false; s.step = 0; grid(); } 
-                return; 
-            }
-            s.idle = false; 
-            await processStep(i);
-        }
-
-        async function processStep(i) {
-            const m = document.getElementById('ply-m'), f = document.getElementById('ply-f'), b = document.getElementById(`btn-${i}`);
-            b.style.transform = 'translateY(6px)';
+        // Initialization
+        window.onload = function() {
+            loadState();
+            document.getElementById('app-shell').style.backgroundImage = `url(${ASSETS.bg})`;
+            document.getElementById('hdr-dp-img').src = ASSETS.dp;
+            document.getElementById('f-dp-big').src = ASSETS.dp;
             
-            // "Bulletproof" Logic: ऑडियो लोड न होने पर भी 1.5 सेकंड बाद अगला स्टेप खुलेगा
-            let task = new Promise((res) => {
-                const fallback = setTimeout(() => { 
-                    console.log("Fallback Triggered"); 
-                    m.pause(); m.src = ""; res(); 
-                }, 1500 / s.spd);
+            updateUI();
+            updateGrid();
+            startAdsLoop();
+        };
 
-                if(s.mute === 0) {
-                    m.src = PATHS.audio[i]; m.playbackRate = s.spd; m.volume = s.vol;
-                    m.play().then(() => {
-                        m.onended = () => { clearTimeout(fallback); res(); };
-                    }).catch(() => { /* Fallback timer will auto-resolve */ });
-                } else if(s.mute === 1) {
-                    clearTimeout(fallback); f.src = PATHS.ting; f.volume = s.vol; f.play(); setTimeout(res, 600 / s.spd);
-                } else { 
-                    clearTimeout(fallback); 
-                    setTimeout(res, 500 / s.spd); 
+        function updateUI() {
+            document.getElementById('total-jap-num').innerText = app.count;
+            const mIcons = ['🔊', '🎵', '🔇'];
+            document.getElementById('mute-icon-hdr').innerText = mIcons[app.mute];
+            const sIcons = ['⚡', '🔊', '📏'];
+            document.getElementById('slider-mode-icon').innerText = sIcons[app.mode];
+            
+            const slider = document.getElementById('global-slider');
+            const display = document.getElementById('slider-display-txt');
+            if(app.mode === 0) {
+                slider.value = (app.speed - 0.5) * 40;
+                display.innerText = app.speed.toFixed(1) + 'x';
+            } else if(app.mode === 1) {
+                slider.value = app.vol * 100;
+                display.innerText = Math.round(app.vol * 100) + '%';
+            } else {
+                slider.value = (app.size - 50) * 2;
+                display.innerText = app.size + 'px';
+            }
+        }
+
+        function updateGrid() {
+            for(let i=0; i<7; i++) {
+                const btn = document.getElementById(`btn-${i}`);
+                btn.style.setProperty('--btn-size', app.size + 'px');
+                
+                // Clear and Rebuild Images (Fix for missing images)
+                btn.innerHTML = `<img src="${ASSETS.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-fallback">${i+1}</span>`;
+                
+                // State Classes
+                btn.classList.remove('target', 'done', 'round-over');
+                if(app.roundFinished) {
+                    btn.classList.add('round-over'); // 80% opacity
+                } else {
+                    if(i === app.step) btn.classList.add('target'); // 75% opacity + white border
+                    else if(i < app.step) btn.classList.add('done'); // 100% green
+                }
+            }
+        }
+
+        async function onMantraClick(idx) {
+            // Sequence Check
+            if(idx !== app.step || app.autoRunning) {
+                if(app.roundFinished && idx === 0) {
+                    app.roundFinished = false;
+                    app.step = 0;
+                    updateGrid();
+                }
+                return;
+            }
+            app.roundFinished = false;
+            await runStep(idx);
+        }
+
+        async function runStep(idx) {
+            const mPlayer = document.getElementById('player-mantra');
+            const fPlayer = document.getElementById('player-fx');
+            const btn = document.getElementById(`btn-${idx}`);
+
+            btn.style.transform = 'translateY(8px) scale(0.95)';
+            
+            // "Worker Task" - Advanced Audio Logic with 1.2s Fail-Safe
+            let stepTask = new Promise((resolve) => {
+                const timer = setTimeout(() => {
+                    console.log("Failsafe Advance");
+                    mPlayer.pause(); mPlayer.src = "";
+                    resolve();
+                }, 1400 / app.speed);
+
+                if(app.mute === 0) {
+                    mPlayer.src = ASSETS.audio[idx];
+                    mPlayer.playbackRate = app.speed;
+                    mPlayer.volume = app.vol;
+                    mPlayer.play().then(() => {
+                        mPlayer.onended = () => { clearTimeout(timer); resolve(); };
+                    }).catch(() => { /* Timer will resolve if browser blocks */ });
+                } else if(app.mute === 1) {
+                    clearTimeout(timer);
+                    fPlayer.src = ASSETS.ting;
+                    fPlayer.volume = app.vol;
+                    fPlayer.play();
+                    setTimeout(resolve, 600 / app.speed);
+                } else {
+                    clearTimeout(timer);
+                    setTimeout(resolve, 400 / app.speed);
                 }
             });
 
-            await task;
-            b.style.transform = '';
-            
-            if(i === 6) { 
-                s.count++; s.step = 0; s.idle = true; 
-                if(s.mute !== 2) { f.src = PATHS.bell; f.volume = s.vol; f.play(); } 
-            } else { 
-                s.step++; 
+            await stepTask;
+            btn.style.transform = '';
+
+            // Progression
+            if(idx === 6) {
+                app.count++;
+                app.step = 0;
+                app.roundFinished = true;
+                if(app.mute !== 2) {
+                    fPlayer.src = ASSETS.bell;
+                    fPlayer.volume = app.vol;
+                    fPlayer.play();
+                }
+            } else {
+                app.step++;
             }
             
-            ui(); grid(); save();
+            updateUI();
+            updateGrid();
+            saveState();
         }
 
-        async function autoJaap() {
-            if(s.auto) return; 
-            s.auto = true; s.idle = false;
-            document.getElementById('auto-jaap-btn').innerText = "जाप जारी है...";
-            s.step = 0; grid();
-            for(let i=0; i<7; i++) await processStep(i);
-            s.auto = false; 
-            document.getElementById('auto-jaap-btn').innerText = "ऑटो प्ले (Start Auto Jaap)";
+        async function startAutoJaap() {
+            if(app.autoRunning) return;
+            app.autoRunning = true;
+            app.roundFinished = false;
+            const btn = document.getElementById('auto-play-btn');
+            btn.innerText = "जाप जारी है (Playing)...";
+            btn.style.opacity = '0.7';
+
+            app.step = 0;
+            updateGrid();
+
+            for(let i=0; i<7; i++) {
+                await runStep(i);
+            }
+
+            app.autoRunning = false;
+            btn.innerText = "Start Auto Jaap";
+            btn.style.opacity = '1';
         }
 
-        function onDrag() {
-            const v = parseInt(document.getElementById('slider').value);
-            if(s.mode === 0) s.spd = 0.5 + (v / 40);
-            else if(s.mode === 1) s.vol = v / 100;
-            else s.size = 50 + (v / 2);
-            ui(); grid(); save();
+        function handleSliderChange() {
+            const v = parseInt(document.getElementById('global-slider').value);
+            if(app.mode === 0) app.speed = 0.5 + (v / 40);
+            else if(app.mode === 1) app.vol = v / 100;
+            else app.size = 50 + (v / 2);
+            updateUI();
+            updateGrid();
+            saveState();
         }
 
-        function cycleMode() { s.mode = (s.mode + 1) % 3; ui(); }
-        function cycleMute() { s.mute = (s.mute + 1) % 3; ui(); save(); }
+        function switchSliderMode() { app.mode = (app.mode + 1) % 3; updateUI(); }
+        function cycleMuteMode() { app.mute = (app.mute + 1) % 3; updateUI(); saveState(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function hardReset() { if(confirm("जीरो करें?")) { s.count = 0; s.step = 0; s.idle = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function hardResetCount() { if(confirm("काउंटर जीरो करें?")) { app.count = 0; app.step = 0; app.roundFinished = false; saveState(); updateUI(); updateGrid(); closeModal('settings-modal'); } }
 
-        window.onload = init;
+        function startAdsLoop() {
+            let i = 0;
+            setInterval(() => {
+                i++;
+                document.getElementById('ad-msg-top').innerText = ADS_LIST[i % ADS_LIST.length];
+                document.getElementById('ad-msg-bot').innerText = ADS_LIST[(i + 1) % ADS_LIST.length];
+            }, 5000);
+        }
     </script>
 </body>
 </html>
