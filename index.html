@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pratham Mantra - Final Stable</title>
+    <title>प्रथम मंत्र - फाइनल स्टेबल</title>
     
     <!-- PWA Settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,7 +18,7 @@
             --btn-size: 75px;
         }
 
-        /* Basic Reset */
+        /* बेसिक रिसेट */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; margin: 0; padding: 0; }
         
         body { 
@@ -45,13 +45,13 @@
 
         .tint { position: absolute; inset: 0; background: rgba(0,0,0,0.78); backdrop-filter: blur(5px); z-index: 0; }
 
-        /* Ad Strip */
+        /* विज्ञापन पट्टी */
         .ad-row { height: 40px; background: #111827; display: flex; align-items: center; padding: 0 12px; z-index: 10; border-bottom: 2px solid var(--accent); position: relative; }
         .ad-row.bottom { border-bottom: none; border-top: 2px solid var(--accent); }
         .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; }
         .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
 
-        /* Header */
+        /* हेडर और डीपी फोटो */
         header { 
             height: 70px; 
             background: var(--glass); 
@@ -68,7 +68,7 @@
         .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
         .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
-        /* Fixed Counter View at Top - Centered */
+        /* काउंटर की जगह - ऊपर बीच में */
         .stats-box { 
             position: absolute; 
             top: 100px; 
@@ -81,12 +81,12 @@
         #total-jap-num { font-size: 90px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
         .jap-lbl { font-size: 11px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
-        /* Button Grid Center */
+        /* बटन ग्रिड */
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; z-index: 5; padding-bottom: 40px; }
         .grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
         .row { display: flex; gap: 18px; justify-content: center; width: 100%; }
 
-        /* Mantra Buttons */
+        /* मंत्र बटन स्टाइल */
         .m-btn {
             width: var(--btn-size); 
             height: var(--btn-size); 
@@ -132,7 +132,7 @@
 
         .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 transparent; }
 
-        /* Footer */
+        /* कंट्रोल पैनल */
         .footer { background: var(--glass); padding: 18px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
         .ctrl-line { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
@@ -154,7 +154,7 @@
             text-transform: uppercase; 
         }
 
-        /* Modals */
+        /* मोडल्स */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; display: none; flex-direction: column; padding: 25px; animation: slideUp 0.3s forwards; }
         @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
         .m-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; }
@@ -235,10 +235,10 @@
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- मोडल्स -->
     <div id="settings-modal" class="modal">
         <div class="m-top"><h2>सेटिंग्स</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
-        <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड</button>
+        <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड (उपयोग विधि)</button>
         <button class="action-link" onclick="openModal('founder-modal')">👨‍💻 डेवलपर जानकारी</button>
         <button class="action-link red" onclick="resetCounter()">🔄 काउंटर जीरो करें</button>
     </div>
@@ -249,9 +249,11 @@
             <img id="f-dp" src="./assets/dp.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--accent); object-fit:cover;">
             <h3 style="margin-top:10px; font-size:22px;">दिनेश सांखला</h3>
             <p style="color:var(--accent); margin-bottom: 10px;">dineshsankhla804@gmail.com</p>
+            
             <div class="bio-box">
                 जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के आध्यात्मिक ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं। लाखों लोग उनके ज्ञान को समझकर सुखी जीवन जी रहे हैं।
             </div>
+            
             <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 अधिकारिक वेबसाइट</a>
         </div>
     </div>
@@ -261,16 +263,17 @@
         <div style="padding:10px; line-height:2.0; font-size:16px;">
             1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
             2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
-            3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
-            4. <b>पूर्ण मंत्र:</b> अब मंत्र पूरा बजने के बाद ही अगला बटन खुलेगा।
+            3. <b>आवाज़:</b> पहली बार स्क्रीन टच करते ही आवाज़ चालू होगी।<br>
+            4. <b>ऑफलाइन:</b> एक बार इंटरनेट से लोड होने के बाद यह बिना नेट के भी चलेगा।
         </div>
     </div>
 
-    <!-- AUDIO ELEMENTS -->
+    <!-- ऑडियो एलिमेंट्स -->
     <audio id="m-player" preload="auto"></audio>
     <audio id="fx-player" preload="auto"></audio>
 
     <script>
+        // --- एसेट्स कॉन्फ़िगरेशन ---
         const ASSETS = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -292,15 +295,17 @@
             lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
-        function save() { localStorage.setItem('pm_v2026_final_v4', JSON.stringify(state)); }
+        // --- स्टोरेज ---
+        function save() { localStorage.setItem('pm_v2026_final_verified_v3', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_v4');
+            const data = localStorage.getItem('pm_v2026_final_verified_v3');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
         }
 
+        // --- UI रिफ्रेश ---
         function ui() {
             document.getElementById('total-jap-num').innerText = state.count;
             const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏'];
@@ -317,6 +322,7 @@
                 const b = document.getElementById(`btn-${i}`);
                 b.style.setProperty('--btn-size', state.size + 'px');
                 b.innerHTML = `<img src="${ASSETS.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-txt">${i+1}</span>`;
+                
                 b.classList.remove('active', 'done', 'round-finished');
                 if(state.roundEnd) b.classList.add('round-finished');
                 else if(i === state.step) b.classList.add('active');
@@ -324,25 +330,30 @@
             }
         }
 
+        // --- साउंड इंजन अनलॉक ---
         function unlockEngine() {
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
+                // साइलेंट बफ़र्स प्ले करें
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
+                console.log("Audio Active");
             }
         }
 
         async function userTap(i) {
             unlockEngine();
+            // बटन साउंड ट्रिगर
             if(state.mute !== 2) {
                 const fx = document.getElementById('fx-player');
                 fx.src = ASSETS.ting;
                 fx.volume = state.vol;
                 fx.play().catch(()=>{});
             }
+
             if(state.roundEnd && i === 0) { state.roundEnd = false; state.step = 0; grid(); }
             if(i !== state.step || state.auto) return;
             state.roundEnd = false;
@@ -353,11 +364,14 @@
             const m = document.getElementById('m-player');
             const f = document.getElementById('fx-player');
             const b = document.getElementById(`btn-${i}`);
+            
             b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Worker Logic" - Advances ONLY after audio ends OR 10s timeout
             let job = new Promise((resolve) => {
-                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 10000 / state.spd);
+                const failSafe = setTimeout(() => { 
+                    m.pause(); resolve(); 
+                }, 10000 / state.spd); // मंत्र पूरा होने का इंतज़ार
+
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
                     m.load();
@@ -377,11 +391,17 @@
 
             if(i === 6) {
                 state.count++; state.step = 0; state.roundEnd = true;
-                if(state.mute !== 2) { f.src = ASSETS.bell; f.volume = state.vol; f.play().catch(()=>{}); }
+                if(state.mute !== 2) { 
+                    f.src = ASSETS.bell; 
+                    f.volume = state.vol; 
+                    f.play().catch(()=>{}); 
+                }
             } else { state.step++; }
+            
             ui(); grid(); save();
         }
 
+        // --- कंट्रोल्स ---
         async function startAuto() {
             unlockEngine();
             if(state.auto) return;
@@ -404,7 +424,9 @@
         function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function resetCounter() { if(confirm("गिनती जीरो करें?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function resetCounter() { 
+            if(confirm("क्या आप गिनती जीरो करना चाहते हैं?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } 
+        }
         function showMsg(txt) { const box = document.getElementById('msg-box'); box.innerText = txt; box.style.display = 'block'; setTimeout(()=>box.style.display='none', 3000); }
         
         window.onload = () => {
