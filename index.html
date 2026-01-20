@@ -51,7 +51,7 @@
         .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; }
         .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
 
-        /* Header - Adjusted DP Photo size */
+        /* Header */
         header { 
             height: 70px; 
             background: var(--glass); 
@@ -65,16 +65,24 @@
         
         .f-btn { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .dp-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent); position: relative; overflow: hidden; flex-shrink: 0; }
-        .dp-circle img { width: 100%; height: 100%; object-fit: cover; background: #1e293b; }
+        .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
         .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
-        /* Counter View - Force Center */
-        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; padding-top: 10px; }
-        .stats-box { width: 100%; text-align: center; margin-bottom: 35px; }
+        /* Fixed Counter View at Top */
+        .stats-box { 
+            position: absolute; 
+            top: 120px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 5; 
+            text-align: center; 
+            width: 100%;
+        }
         #total-jap-num { font-size: 90px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
         .jap-lbl { font-size: 11px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
-        /* Button Grid */
+        /* Button Grid Center */
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; z-index: 5; padding-bottom: 50px; }
         .grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
         .row { display: flex; gap: 18px; justify-content: center; width: 100%; }
 
@@ -193,12 +201,12 @@
             </div>
         </header>
 
-        <main>
-            <div class="stats-box">
-                <div id="total-jap-num">0</div>
-                <div class="jap-lbl">Total Jaap Counting</div>
-            </div>
+        <div class="stats-box">
+            <div id="total-jap-num">0</div>
+            <div class="jap-lbl">Total Jaap Counting</div>
+        </div>
 
+        <main>
             <div class="grid" id="main-grid">
                 <div class="row"><button id="btn-0" class="m-btn" onclick="userTap(0)"><span class="num-txt">1</span></button></div>
                 <div class="row">
@@ -238,14 +246,14 @@
     </div>
 
     <div id="founder-modal" class="modal">
-        <div class="m-top"><h2>Developer</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
+        <div class="m-top"><h2>Developer Info</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
         <div style="text-align:center; padding: 10px;">
             <img id="f-dp" src="./assets/dp.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--accent); object-fit:cover;">
             <h3 style="margin-top:10px; font-size:22px;">Dinesh Sankhla</h3>
             <p style="color:var(--accent); margin-bottom: 10px;">dineshsankhla804@gmail.com</p>
             
             <div class="bio-box">
-                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं।
+                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के आध्यात्मिक ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं। लाखों लोग उनके ज्ञान को समझकर सुखी जीवन जी रहे हैं।
             </div>
             
             <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 Official Website</a>
@@ -267,7 +275,7 @@
     <audio id="fx-player" preload="auto"></audio>
 
     <script>
-        // --- FINAL VERIFIED CONFIG ---
+        // --- FINAL VERIFIED ASSETS ---
         const ASSETS = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -290,9 +298,9 @@
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_final_verified', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_final_verified_v2', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified');
+            const data = localStorage.getItem('pm_v2026_final_verified_v2');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
@@ -329,12 +337,11 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
-                // Force load tiny silent buffers to wake audio context
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Unlocked");
+                console.log("Audio Unlocked Successfully");
             }
         }
 
@@ -353,10 +360,10 @@
             
             b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Worker Logic" - Advances even if audio fails to load
+            // "Worker Logic" - Robust playing mechanism
             let job = new Promise((resolve) => {
                 const failSafe = setTimeout(() => { 
-                    console.log("Failsafe skip");
+                    console.log("Failsafe skip triggering...");
                     m.pause(); resolve(); 
                 }, 2000 / state.spd);
 
@@ -367,7 +374,7 @@
                     m.volume = state.vol;
                     m.play().then(() => { 
                         m.onended = () => { clearTimeout(failSafe); resolve(); }; 
-                    }).catch(() => { /* Auto resolves by timer */ });
+                    }).catch(() => { /* Timer handles failure */ });
                 } else if(state.mute === 1) {
                     clearTimeout(failSafe); f.src = ASSETS.ting; f.volume = state.vol; f.play().catch(()=>{});
                     setTimeout(resolve, 600 / state.spd);
