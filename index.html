@@ -168,7 +168,7 @@
         .action-link.red { background: #ef4444; }
 
         .dev-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        .whatsapp-btn { display: inline-flex; align-items: center; background: #25D366; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 13px; margin-top: 10px; transition: 0.2s; }
+        .whatsapp-btn { display: inline-flex; align-items: center; justify-content: center; background: #25D366; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 12px; transition: 0.2s; gap: 8px; border: none; }
         .whatsapp-btn:active { transform: scale(0.95); opacity: 0.9; }
 
         #msg-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: black; padding: 12px 24px; border-radius: 12px; font-weight: 900; z-index: 200; display: none; }
@@ -268,7 +268,9 @@
             <div class="dev-footer">
                 <p style="color:#94a3b8; font-size: 14px; font-weight: bold;">Created by: Dinesh Sankhla</p>
                 <p style="color:#64748b; font-size: 11px;">dineshsankhla804@gmail.com</p>
-                <a href="https://wa.me/yourlinkhere" target="_blank" class="whatsapp-btn">
+                <!-- WhatsApp button with custom link area -->
+                <a href="https://wa.me/918040000000" target="_blank" class="whatsapp-btn">
+                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412s-1.239 6.164-3.488 8.412c-2.246 2.247-5.232 3.486-8.412 3.486-2.099 0-4.146-.549-5.951-1.591L0 24.001zm6.704-17.067c-.145-.324-.295-.329-.43-.329s-.277-.001-.427-.001-.395.056-.601.282c-.206.227-.789.771-.789 1.883 0 1.112.81 2.186.922 2.337.113.15 1.59 2.429 3.853 3.404.538.233 1.045.385 1.488.527.601.192 1.147.164 1.579.1c.481-.072 1.481-.605 1.688-1.19.206-.585.206-1.084.145-1.19-.061-.106-.226-.17-.481-.297s-1.503-.742-1.734-.826-.395-.127-.561.127-.641.826-.786.993-.288.188-.544.061-1.077-.398-2.052-1.267c-.759-.678-1.272-1.517-1.421-1.771-.15-.254-.016-.391.111-.518.114-.114.254-.297.382-.445.127-.15.17-.254.254-.424.084-.17.042-.324-.021-.452-.063-.127-.544-1.312-.746-1.802z"/></svg>
                     WhatsApp 📲
                 </a>
             </div>
@@ -281,7 +283,8 @@
             1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
             2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
             3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
-            4. <b>साउंड चेक:</b> मंत्र बजने पर आवाज़ आएगी, और काउंटर बढ़ने पर 'बैल' की आवाज़ आएगी।
+            4. <b>साउंड चेक:</b> मंत्र बजने पर आवाज़ आएगी, और काउंटर बढ़ने पर 'बैल' की आवाज़ आएगी।<br>
+            5. <b>सेटिंग्स:</b> स्लाइडर में ⚡, 🔊, 📏 के बाद 🔔 आइकॉन से बटन और काउंटर की आवाज़ कंट्रोल करें।
         </div>
     </div>
 
@@ -301,37 +304,43 @@
         };
 
         const ADS_DATA = [
-            { text: "नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।", link: "https://www.jagatgurusantrampalji.org/nasha-mukt-bharat", btn: "Visit" },
-            { text: "दहेज मुक्त भारत: बिना लेन-देन के रमैणी शादियां।", link: "https://www.jagatgurusantrampalji.org/dowry-free-india", btn: "See More" },
-            { text: "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।", link: "https://www.jagatgurusantrampalji.org/online-naam-diksha", btn: "Join Now" },
-            { text: "पवित्र पुस्तक 'जीने की राह': आज ही मंगवाएं।", link: "https://www.jagatgurusantrampalji.org/jeene-ki-raah", btn: "Order Book" }
+            { text: "नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।", link: "https://www.jagatgurusantrampalji.org", btn: "Visit" },
+            { text: "दहेज मुक्त भारत: बिना लेन-देन के रमैणी शादियां।", link: "https://www.jagatgurusantrampalji.org", btn: "See More" },
+            { text: "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।", link: "https://www.jagatgurusantrampalji.org", btn: "Join Now" },
+            { text: "पवित्र पुस्तक 'जीने की राह': आज ही मंगवाएं।", link: "https://www.jagatgurusantrampalji.org", btn: "Order Book" }
         ];
 
         let state = {
-            count: 0, step: 0, mute: 0, mode: 0, spd: 1.0, vol: 1.0, size: 75,
+            count: 0, step: 0, mute: 0, 
+            mode: 0, // 0:Speed, 1:Mantra Vol, 2:Btn Size, 3:FX Vol
+            spd: 1.0, vol: 1.0, fxVol: 1.0, size: 75,
             lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_final_verified_v12', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_final_pro_v1', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified_v12');
+            const data = localStorage.getItem('pm_v2026_final_pro_v1');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
+            // Ensure fxVol exists for old users
+            if(state.fxVol === undefined) state.fxVol = 1.0;
         }
 
         // --- UI REFRESH ---
         function ui() {
             document.getElementById('total-jap-num').innerText = state.count;
-            const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏'];
+            const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏', '🔔'];
             document.getElementById('mute-hdr').innerText = mIcons[state.mute];
             document.getElementById('sli-icon').innerText = sIcons[state.mode];
+            
             const sli = document.getElementById('master-slider'), dsp = document.getElementById('sli-display');
             if(state.mode === 0) { sli.value = (state.spd - 0.5) * 40; dsp.innerText = state.spd.toFixed(1) + 'x'; }
             else if(state.mode === 1) { sli.value = state.vol * 100; dsp.innerText = Math.round(state.vol * 100) + '%'; }
-            else { sli.value = (state.size - 50) * 2; dsp.innerText = state.size + 'px'; }
+            else if(state.mode === 2) { sli.value = (state.size - 50) * 2; dsp.innerText = state.size + 'px'; }
+            else { sli.value = state.fxVol * 100; dsp.innerText = Math.round(state.fxVol * 100) + '%'; }
         }
 
         function grid() {
@@ -356,17 +365,16 @@
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Unlocked");
             }
         }
 
         async function userTap(i) {
             unlockEngine();
-            // टिक-टिक आवाज़ ट्रिगर (अगर म्यूट नहीं है)
+            // Tic-Tic Sound (FX)
             if(state.mute !== 2) {
                 const fx = document.getElementById('fx-player');
                 fx.src = ASSETS.ting;
-                fx.volume = state.vol;
+                fx.volume = state.fxVol;
                 fx.play().catch(()=>{});
             }
 
@@ -391,7 +399,7 @@
             let job = new Promise((resolve) => {
                 const failSafe = setTimeout(() => { 
                     m.pause(); resolve(); 
-                }, 10000 / state.spd); 
+                }, 12000 / state.spd); 
 
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
@@ -403,7 +411,6 @@
                     m.play().catch(() => { clearTimeout(failSafe); resolve(); });
                 } else {
                     clearTimeout(failSafe);
-                    // टिक-टिक मोड में तेज़ी से आगे बढ़ेगा
                     setTimeout(resolve, 600 / state.spd);
                 }
             });
@@ -415,12 +422,12 @@
                 state.count++; 
                 state.step = 0; 
                 state.roundEnd = true;
-                // काउंटर बढ़ने पर बेल की आवाज़
+                // Counter Bell Sound
                 if(state.mute !== 2) { 
                     const fx = document.getElementById('fx-player');
                     fx.src = ASSETS.bell; 
-                    fx.volume = state.vol; 
-                    fx.play().catch(()=>{ console.log("Bell failed"); }); 
+                    fx.volume = state.fxVol; 
+                    fx.play().catch(()=>{}); 
                 }
             } else { state.step++; }
             
@@ -445,18 +452,32 @@
             const v = parseInt(document.getElementById('master-slider').value);
             if(state.mode === 0) state.spd = 0.5 + (v / 40);
             else if(state.mode === 1) state.vol = v / 100;
-            else state.size = 50 + (v / 2);
+            else if(state.mode === 2) state.size = 50 + (v / 2);
+            else state.fxVol = v / 100;
             ui(); grid(); save();
         }
 
-        function cycleMode() { state.mode = (state.mode + 1) % 3; ui(); }
+        function cycleMode() { 
+            state.mode = (state.mode + 1) % 4; // Now 4 modes
+            ui(); 
+        }
+
         function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
         function resetCounter() { 
-            if(confirm("क्या आप गिनती जीरो करना चाहते हैं?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } 
+            if(confirm("क्या आप गिनती जीरो करना चाहते हैं?")) { 
+                state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); 
+                closeModal('settings-modal'); 
+            } 
         }
-        function showMsg(txt) { const box = document.getElementById('msg-box'); box.innerText = txt; box.style.display = 'block'; setTimeout(()=>box.style.display='none', 3000); }
+        
+        function showMsg(txt) { 
+            const box = document.getElementById('msg-box'); 
+            box.innerText = txt; box.style.display = 'block'; 
+            setTimeout(()=>box.style.display='none', 3000); 
+        }
         
         window.onload = () => {
             load();
@@ -465,7 +486,7 @@
             document.getElementById('f-dp').src = ASSETS.dp;
             ui(); grid();
             
-            // विज्ञापन लूप
+            // Ad loop
             let adIdx = 0;
             setInterval(() => {
                 adIdx = (adIdx + 1) % ADS_DATA.length;
