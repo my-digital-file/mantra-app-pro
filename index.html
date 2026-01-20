@@ -159,15 +159,20 @@
         .action-link { width: 100%; padding: 18px; background: #1e293b; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; transition: 0.2s; text-align: center; text-decoration: none; display: block; }
         .action-link.red { background: #ef4444; }
 
+        /* Custom Message Box */
+        #msg-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: black; padding: 12px 24px; border-radius: 12px; font-weight: 900; z-index: 200; display: none; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
     </style>
 </head>
 <body onclick="unlockEngine()">
+
+    <div id="msg-box"></div>
 
     <div id="app-shell">
         <div class="tint"></div>
         
         <div class="ad-row">
-            <span class="ad-tag">Gyan</span>
+            <span class="ad-tag">News</span>
             <div id="top-ad" class="ad-scroll">नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।</div>
         </div>
 
@@ -183,7 +188,7 @@
                 </div>
             </div>
             <div style="display: flex; gap: 8px;">
-                <button class="icon-btn" style="background:none;" onclick="alert('Google Chrome Menu > Install App click karein')">📥</button>
+                <button class="icon-btn" style="background:none;" onclick="showMsg('Chrome Menu > Install App click karein')">📥</button>
                 <button class="icon-btn" style="background:none;" onclick="cycleMute()" id="mute-hdr">🔊</button>
                 <button class="icon-btn" style="background:none;" onclick="openModal('settings-modal')">⚙️</button>
             </div>
@@ -250,7 +255,7 @@
         <p style="padding:15px; line-height:2.0; font-size:16px;">
             1. <b>Jaap:</b> Keval chamakta hua button hi dabayein.<br>
             2. <b>Auto Play:</b> Sab buttons khud dabeinge aur counter badhega.<br>
-            3. <b>Offline:</b> Ek baar load hone par bina net ke chalega.<br>
+            3. <b>Sound:</b> Pehli baar touch karne par awaaz chalu hogi.<br>
             4. <b>Reset:</b> Raat 12 baje count 0 ho jayega.
         </p>
     </div>
@@ -259,7 +264,7 @@
     <audio id="fx-player"></audio>
 
     <script>
-        // ASSETS SYNC
+        // --- FINAL VERIFIED CONFIG ---
         const CONFIG = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -276,34 +281,42 @@
             "पवित्र पुस्तक 'जीने की राह': आज ही निःशुल्क मंगवाएं।"
         ];
 
-        // APP LOGIC
         let state = {
             count: 0, step: 0, mute: 0, mode: 0, spd: 1.0, vol: 1.0, size: 75,
             lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
-        function save() { localStorage.setItem('pm_v2026_stable_fix', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_verified_final', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_stable_fix');
+            const data = localStorage.getItem('pm_v2026_verified_final');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
         }
 
+        function showMsg(txt) {
+            const b = document.getElementById('msg-box');
+            b.innerText = txt; b.style.display = 'block';
+            setTimeout(() => b.style.display = 'none', 3000);
+        }
+
         function unlockEngine() {
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
+                // Force load tiny silent buffers to wake audio context
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                m.play(); f.play();
+                m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
+                console.log("Audio Unlocked");
             }
         }
 
         window.onload = () => {
             load();
+            // Critical Fix: Matching variable name CONFIG
             document.getElementById('app-shell').style.backgroundImage = `url(${CONFIG.bg})`;
             document.getElementById('h-dp').src = CONFIG.dp;
             ui(); grid(); ads();
@@ -345,14 +358,21 @@
             const m = document.getElementById('m-player'), f = document.getElementById('fx-player'), b = document.getElementById(`btn-${i}`);
             b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Guaranteed Step" - If audio fails, advance after timer
+            // "Worker Logic" - Advances even if audio fails to load
             let job = new Promise((resolve) => {
-                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 1600 / state.spd);
+                const failSafe = setTimeout(() => { 
+                    console.log("Failsafe jump");
+                    m.pause(); resolve(); 
+                }, 1600 / state.spd);
+
                 if(state.mute === 0) {
                     m.src = CONFIG.audio[i]; m.playbackRate = state.spd; m.volume = state.vol;
-                    m.play().then(() => { m.onended = () => { clearTimeout(failSafe); resolve(); }; }).catch(resolve);
+                    m.play().then(() => { 
+                        m.onended = () => { clearTimeout(failSafe); resolve(); }; 
+                    }).catch(() => { /* Timer will resolve */ });
                 } else if(state.mute === 1) {
-                    clearTimeout(failSafe); f.src = CONFIG.ting; f.volume = state.vol; f.play(); setTimeout(resolve, 600 / state.spd);
+                    clearTimeout(failSafe); f.src = CONFIG.ting; f.volume = state.vol; f.play().catch(()=>{});
+                    setTimeout(resolve, 600 / state.spd);
                 } else { clearTimeout(failSafe); setTimeout(resolve, 400 / state.spd); }
             });
 
@@ -361,7 +381,7 @@
 
             if(i === 6) {
                 state.count++; state.step = 0; state.roundEnd = true;
-                if(state.mute !== 2) { f.src = CONFIG.bell; f.volume = state.vol; f.play(); }
+                if(state.mute !== 2) { f.src = CONFIG.bell; f.volume = state.vol; f.play().catch(()=>{}); }
             } else { state.step++; }
             
             ui(); grid(); save();
@@ -389,7 +409,10 @@
         function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function resetCounter() { if(confirm("Kya aap zero karna chahte hain?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function resetCounter() { 
+            const b = document.getElementById('msg-box');
+            if(confirm("Zero karein?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } 
+        }
         function ads() {
             setInterval(() => { const idx = Math.floor(Math.random() * 4); document.getElementById('top-ad').innerText = ADS_LIST[idx]; document.getElementById('bot-ad').innerText = ADS_LIST[(idx + 1) % 4]; }, 5000);
         }
