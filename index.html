@@ -181,7 +181,7 @@
         <div class="ad-row">
             <span class="ad-tag">समाचार</span>
             <div id="top-ad-text" class="ad-scroll">संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा त्यागा।</div>
-            <a id="top-ad-link" href="#" class="ad-visit-btn" target="_blank">Visit</a>
+            <a id="top-ad-link" href="https://www.jagatgurusantrampalji.org" class="ad-visit-btn" target="_blank">Visit</a>
         </div>
 
         <header>
@@ -236,7 +236,7 @@
         <div class="ad-row bottom">
             <span class="ad-tag">सामाजिक</span>
             <div id="bot-ad-text" class="ad-scroll">बिना दहेज के रमैणी शादियां समाज में नया बदलाव ला रही हैं।</div>
-            <a id="bot-ad-link" href="#" class="ad-visit-btn" target="_blank">Visit</a>
+            <a id="bot-ad-link" href="https://www.jagatgurusantrampalji.org" class="ad-visit-btn" target="_blank">Visit</a>
         </div>
     </div>
 
@@ -267,7 +267,7 @@
         <div class="m-top"><h2>सहायता</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <div style="padding:10px; line-height:2.0; font-size:16px;">
             1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>ऑटो प्ले:</b> सब बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
+            2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
             3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
             4. <b>पूर्ण मंत्र:</b> अब मंत्र पूरा बजने के बाद ही अगला बटन खुलेगा।
         </div>
@@ -278,7 +278,7 @@
     <audio id="fx-player" preload="auto"></audio>
 
     <script>
-        // --- एसेट्स कॉन्फ़िगरेशन ---
+        // --- FINAL VERIFIED ASSETS ---
         const ASSETS = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -288,7 +288,6 @@
             audio: ["./assets/1.mp3", "./assets/2.mp3", "./assets/3.mp3", "./assets/4.mp3", "./assets/5.mp3", "./assets/6.mp3", "./assets/7.mp3"]
         };
 
-        // विज्ञापन डाटा (टेक्स्ट, लिंक, और बटन का नाम अलग-अलग)
         const ADS_DATA = [
             { text: "नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।", link: "https://www.jagatgurusantrampalji.org/nasha-mukt-bharat", btn: "Visit" },
             { text: "दहेज मुक्त भारत: बिना लेन-देन के रमैणी शादियां।", link: "https://www.jagatgurusantrampalji.org/dowry-free-india", btn: "See More" },
@@ -301,17 +300,17 @@
             lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
-        // --- स्टोरेज ---
-        function save() { localStorage.setItem('pm_v2026_final_verified_v5', JSON.stringify(state)); }
+        // --- STORAGE ---
+        function save() { localStorage.setItem('pm_v2026_final_verified_v10', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified_v5');
+            const data = localStorage.getItem('pm_v2026_final_verified_v10');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
         }
 
-        // --- UI रिफ्रेश ---
+        // --- UI REFRESH ---
         function ui() {
             document.getElementById('total-jap-num').innerText = state.count;
             const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏'];
@@ -336,11 +335,12 @@
             }
         }
 
-        // --- साउंड इंजन अनलॉक ---
+        // --- AUDIO ENGINE ---
         function unlockEngine() {
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
+                // Kickstart audio
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
@@ -358,7 +358,12 @@
                 fx.play().catch(()=>{});
             }
 
-            if(state.roundEnd && i === 0) { state.roundEnd = false; state.step = 0; grid(); }
+            if(state.roundEnd && i === 0) { 
+                state.roundEnd = false; 
+                state.step = 0; 
+                grid(); 
+                return;
+            }
             if(i !== state.step || state.auto) return;
             state.roundEnd = false;
             await runStep(i);
@@ -372,7 +377,10 @@
             btn.style.transform = 'translateY(8px) scale(0.95)';
             
             let job = new Promise((resolve) => {
-                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 12000 / state.spd); 
+                // फेल-सेफ टाइमर: ऑडियो न चलने पर 2 सेकंड बाद खुद आगे बढ़ेगा
+                const failSafe = setTimeout(() => { 
+                    m.pause(); resolve(); 
+                }, 10000 / state.spd); 
 
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
@@ -384,6 +392,7 @@
                     m.play().catch(() => { clearTimeout(failSafe); resolve(); });
                 } else {
                     clearTimeout(failSafe);
+                    // टिक टिक मोड में तेज़ी से आगे बढ़ेगा
                     setTimeout(resolve, 600 / state.spd);
                 }
             });
@@ -395,26 +404,29 @@
                 state.count++; 
                 state.step = 0; 
                 state.roundEnd = true;
-                // काउंटर बढ़ने पर बेल की आवाज़ (Forcefully trigger)
+                // काउंटर बढ़ने पर बेल की आवाज़
                 if(state.mute !== 2) { 
                     f.src = ASSETS.bell; 
                     f.volume = state.vol; 
-                    f.play().catch(()=>{ console.log("Bell failed"); }); 
+                    f.play().catch(()=>{}); 
                 }
             } else { state.step++; }
             
             ui(); grid(); save();
         }
 
-        // --- कंट्रोल्स ---
+        // --- CONTROLS ---
         async function startAuto() {
             unlockEngine();
             if(state.auto) return;
             state.auto = true; state.roundEnd = false;
             document.getElementById('auto-play-btn').innerText = "जाप जारी है...";
             state.step = 0; grid();
-            for(let i=0; i<7; i++) await runStep(i);
-            state.auto = false; document.getElementById('auto-play-btn').innerText = "ऑटो प्ले शुरू करें";
+            for(let i=0; i<7; i++) {
+                if(!state.auto) break; // Allow stopping if needed later
+                await runStep(i);
+            }
+            state.auto = false; document.getElementById('auto-play-btn').innerText = "ऑટો પ્લે શરૂ કરો";
         }
 
         function handleSlider() {
@@ -446,13 +458,9 @@
             setInterval(() => {
                 adIdx = (adIdx + 1) % ADS_DATA.length;
                 const nextIdx = (adIdx + 1) % ADS_DATA.length;
-                
-                // टॉप एड अपडेट
                 document.getElementById('top-ad-text').innerText = ADS_DATA[adIdx].text;
                 document.getElementById('top-ad-link').href = ADS_DATA[adIdx].link;
                 document.getElementById('top-ad-link').innerText = ADS_DATA[adIdx].btn;
-                
-                // बॉटम एड अपडेट
                 document.getElementById('bot-ad-text').innerText = ADS_DATA[nextIdx].text;
                 document.getElementById('bot-ad-link').href = ADS_DATA[nextIdx].link;
                 document.getElementById('bot-ad-link').innerText = ADS_DATA[nextIdx].btn;
