@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pratham Mantra - Stable Edition</title>
+    <title>Pratham Mantra - Final Stable</title>
     
     <!-- PWA Settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,7 +18,7 @@
             --btn-size: 75px;
         }
 
-        /* Base Reset */
+        /* Basic Reset */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; margin: 0; padding: 0; }
         
         body { 
@@ -78,7 +78,7 @@
         .grid { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
         .row { display: flex; gap: 20px; justify-content: center; width: 100%; }
 
-        /* 3D Mantra Buttons */
+        /* Mantra Buttons */
         .m-btn {
             width: var(--btn-size); 
             height: var(--btn-size); 
@@ -93,7 +93,6 @@
             align-items: center; 
             justify-content: center; 
             overflow: hidden;
-            /* State: Locked (20%) */
             opacity: 0.2; 
             filter: blur(4px) grayscale(0.8); 
             pointer-events: none;
@@ -102,7 +101,6 @@
         .m-btn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .num-txt { position: absolute; font-size: 26px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
 
-        /* State: Target (75% + Border) */
         .m-btn.active { 
             opacity: 0.75; 
             filter: blur(0); 
@@ -113,7 +111,6 @@
             z-index: 10;
         }
         
-        /* State: Done (100% Green) */
         .m-btn.done { 
             opacity: 1 !important; 
             filter: none !important; 
@@ -123,7 +120,6 @@
             pointer-events: none; 
         }
 
-        /* State: Round Over (80%) */
         .m-btn.round-finished { opacity: 0.85; filter: blur(1.5px); pointer-events: auto; }
 
         .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 transparent; }
@@ -134,7 +130,6 @@
         input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
         
         .icon-btn { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; border: none; color: white; transition: 0.2s; }
-        .icon-btn:active { transform: scale(0.9); }
         
         #auto-play-btn { 
             width: 100%; 
@@ -156,12 +151,11 @@
         .m-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
         .close-btn { background: none; border: none; color: white; font-size: 45px; cursor: pointer; }
         
-        .action-link { width: 100%; padding: 18px; background: #1e293b; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; transition: 0.2s; text-align: center; text-decoration: none; display: block; }
+        .action-link { width: 100%; padding: 18px; background: #1e293b; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; text-align: center; text-decoration: none; display: block; }
         .action-link.red { background: #ef4444; }
 
         /* Custom Message Box */
-        #msg-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: black; padding: 12px 24px; border-radius: 12px; font-weight: 900; z-index: 200; display: none; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+        #msg-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: black; padding: 12px 24px; border-radius: 12px; font-weight: 900; z-index: 200; display: none; }
     </style>
 </head>
 <body onclick="unlockEngine()">
@@ -172,8 +166,8 @@
         <div class="tint"></div>
         
         <div class="ad-row">
-            <span class="ad-tag">News</span>
-            <div id="top-ad" class="ad-scroll">नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।</div>
+            <span class="ad-tag">Gyan</span>
+            <div id="top-ad" class="ad-scroll">Sant Rampal Ji Maharaj ke gyan se lakho ne nasha tyaga.</div>
         </div>
 
         <header>
@@ -183,7 +177,7 @@
                     <span class="v-tick">✔</span>
                 </div>
                 <div>
-                    <div style="font-weight: 900; color: var(--accent); font-size: 20px; letter-spacing: -0.5px;">प्रथम मंत्र</div>
+                    <div style="font-weight: 900; color: var(--accent); font-size: 20px; letter-spacing: -0.5px;">Pratham Mantra</div>
                     <div style="font-size: 10px; color: #94a3b8; font-weight: 800;">Sant Rampal Ji Maharaj</div>
                 </div>
             </div>
@@ -201,15 +195,12 @@
             </div>
 
             <div class="grid" id="main-grid">
-                <!-- Row 1 -->
                 <div class="row"><button id="btn-0" class="m-btn" onclick="userTap(0)"><span class="num-txt">1</span></button></div>
-                <!-- Row 2 -->
                 <div class="row">
                     <button id="btn-1" class="m-btn" onclick="userTap(1)"><span class="num-txt">2</span></button>
                     <button id="btn-2" class="m-btn" onclick="userTap(2)"><span class="num-txt">3</span></button>
                     <button id="btn-3" class="m-btn" onclick="userTap(3)"><span class="num-txt">4</span></button>
                 </div>
-                <!-- Row 3 -->
                 <div class="row">
                     <button id="btn-4" class="m-btn" onclick="userTap(4)"><span class="num-txt">5</span></button>
                     <button id="btn-5" class="m-btn" onclick="userTap(5)"><span class="num-txt">6</span></button>
@@ -229,15 +220,15 @@
 
         <div class="ad-row bottom">
             <span class="ad-tag">Social</span>
-            <div id="bot-ad" class="ad-scroll">दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां समाज में नया बदलाव ला रही हैं।</div>
+            <div id="bot-ad" class="ad-scroll">Bina dahej ke Ramaini shadiyan samaj mein naya badlav la rahi hain.</div>
         </div>
     </div>
 
     <!-- Modals -->
     <div id="settings-modal" class="modal">
         <div class="m-top"><h2>Settings</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
-        <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड</button>
-        <button class="action-link red" onclick="resetCounter()">🔄 काउंटर जीरो करें</button>
+        <button class="action-link" onclick="openModal('help-modal')">❓ App Guide</button>
+        <button class="action-link red" onclick="resetCounter()">🔄 Counter Zero Karein</button>
     </div>
 
     <div id="founder-modal" class="modal">
@@ -253,18 +244,19 @@
     <div id="help-modal" class="modal">
         <div class="m-top"><h2>Help</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <p style="padding:15px; line-height:2.0; font-size:16px;">
-            1. <b>Jaap:</b> Keval chamakta hua button hi dabayein.<br>
-            2. <b>Auto Play:</b> Sab buttons khud dabeinge aur counter badhega.<br>
-            3. <b>Sound:</b> Pehli baar touch karne par awaaz chalu hogi.<br>
-            4. <b>Reset:</b> Raat 12 baje count 0 ho jayega.
+            1. Keval chamakta hua button hi dabayein.<br>
+            2. Auto Play sab buttons khud dabeinge aur count badhega.<br>
+            3. Sound pehli baar touch karne par chalu hoga.<br>
+            4. Files folder 'assets' mein honi chahiye.
         </p>
     </div>
 
-    <audio id="m-player"></audio>
-    <audio id="fx-player"></audio>
+    <!-- AUDIO ELEMENTS -->
+    <audio id="m-player" preload="auto"></audio>
+    <audio id="fx-player" preload="auto"></audio>
 
     <script>
-        // --- FINAL VERIFIED CONFIG ---
+        // CONFIG
         const CONFIG = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -275,10 +267,10 @@
         };
 
         const ADS_LIST = [
-            "नशा मुक्ति अभियान: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।",
-            "दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां हुई।",
-            "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।",
-            "पवित्र पुस्तक 'जीने की राह': आज ही निःशुल्क मंगवाएं।"
+            "Nasha Mukti: Sant Rampal Ji Maharaj ke gyan se lakho ne nasha tyaga.",
+            "Dahej Mukt Bharat: Bina len-den ke Ramaini shadiyan.",
+            "Nishulk Naam Diksha: Moksh hetu aaj hi website visit karein.",
+            "Pavitra Pustak 'Jeene Ki Raah': Aaj hi mangwayein."
         ];
 
         let state = {
@@ -286,42 +278,17 @@
             lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
-        function save() { localStorage.setItem('pm_v2026_verified_final', JSON.stringify(state)); }
+        // --- STORAGE ---
+        function save() { localStorage.setItem('pm_v2026_super_fix', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_verified_final');
+            const data = localStorage.getItem('pm_v2026_super_fix');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
         }
 
-        function showMsg(txt) {
-            const b = document.getElementById('msg-box');
-            b.innerText = txt; b.style.display = 'block';
-            setTimeout(() => b.style.display = 'none', 3000);
-        }
-
-        function unlockEngine() {
-            if(!state.unlocked) {
-                const m = document.getElementById('m-player');
-                const f = document.getElementById('fx-player');
-                // Force load tiny silent buffers to wake audio context
-                m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                m.play().catch(()=>{}); f.play().catch(()=>{});
-                state.unlocked = true;
-                console.log("Audio Unlocked");
-            }
-        }
-
-        window.onload = () => {
-            load();
-            // Critical Fix: Matching variable name CONFIG
-            document.getElementById('app-shell').style.backgroundImage = `url(${CONFIG.bg})`;
-            document.getElementById('h-dp').src = CONFIG.dp;
-            ui(); grid(); ads();
-        };
-
+        // --- UI REFRESH ---
         function ui() {
             document.getElementById('total-jap-num').innerText = state.count;
             const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏'];
@@ -338,11 +305,23 @@
                 const b = document.getElementById(`btn-${i}`);
                 b.style.setProperty('--btn-size', state.size + 'px');
                 b.innerHTML = `<img src="${CONFIG.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-txt">${i+1}</span>`;
-                
                 b.classList.remove('active', 'done', 'round-finished');
                 if(state.roundEnd) b.classList.add('round-finished');
                 else if(i === state.step) b.classList.add('active');
                 else if(i < state.step) b.classList.add('done');
+            }
+        }
+
+        // --- AUDIO ENGINE ---
+        function unlockEngine() {
+            if(!state.unlocked) {
+                const m = document.getElementById('m-player');
+                const f = document.getElementById('fx-player');
+                m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+                f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+                m.play().catch(()=>{}); f.play().catch(()=>{});
+                state.unlocked = true;
+                console.log("Audio Enabled");
             }
         }
 
@@ -355,25 +334,33 @@
         }
 
         async function runStep(i) {
-            const m = document.getElementById('m-player'), f = document.getElementById('fx-player'), b = document.getElementById(`btn-${i}`);
+            const m = document.getElementById('m-player');
+            const f = document.getElementById('fx-player');
+            const b = document.getElementById(`btn-${i}`);
+            
             b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Worker Logic" - Advances even if audio fails to load
             let job = new Promise((resolve) => {
-                const failSafe = setTimeout(() => { 
-                    console.log("Failsafe jump");
-                    m.pause(); resolve(); 
-                }, 1600 / state.spd);
-
+                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 1800 / state.spd);
+                
                 if(state.mute === 0) {
-                    m.src = CONFIG.audio[i]; m.playbackRate = state.spd; m.volume = state.vol;
-                    m.play().then(() => { 
-                        m.onended = () => { clearTimeout(failSafe); resolve(); }; 
-                    }).catch(() => { /* Timer will resolve */ });
+                    m.src = CONFIG.audio[i];
+                    m.load();
+                    m.playbackRate = state.spd;
+                    m.volume = state.vol;
+                    m.play().then(() => {
+                        m.onended = () => { clearTimeout(failSafe); resolve(); };
+                    }).catch(resolve);
                 } else if(state.mute === 1) {
-                    clearTimeout(failSafe); f.src = CONFIG.ting; f.volume = state.vol; f.play().catch(()=>{});
+                    clearTimeout(failSafe);
+                    f.src = CONFIG.ting;
+                    f.volume = state.vol;
+                    f.play().catch(()=>{});
                     setTimeout(resolve, 600 / state.spd);
-                } else { clearTimeout(failSafe); setTimeout(resolve, 400 / state.spd); }
+                } else {
+                    clearTimeout(failSafe);
+                    setTimeout(resolve, 400 / state.spd);
+                }
             });
 
             await job;
@@ -387,11 +374,12 @@
             ui(); grid(); save();
         }
 
+        // --- CONTROLS ---
         async function startAuto() {
             unlockEngine();
             if(state.auto) return;
             state.auto = true; state.roundEnd = false;
-            document.getElementById('auto-play-btn').innerText = "जाप जारी है...";
+            document.getElementById('auto-play-btn').innerText = "Jaap Jaari Hai...";
             state.step = 0; grid();
             for(let i=0; i<7; i++) await runStep(i);
             state.auto = false; document.getElementById('auto-play-btn').innerText = "Start Auto Jaap";
@@ -409,13 +397,20 @@
         function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function resetCounter() { 
-            const b = document.getElementById('msg-box');
-            if(confirm("Zero karein?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } 
-        }
-        function ads() {
-            setInterval(() => { const idx = Math.floor(Math.random() * 4); document.getElementById('top-ad').innerText = ADS_LIST[idx]; document.getElementById('bot-ad').innerText = ADS_LIST[(idx + 1) % 4]; }, 5000);
-        }
+        function resetCounter() { if(confirm("Zero karein?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function showMsg(txt) { const box = document.getElementById('msg-box'); box.innerText = txt; box.style.display = 'block'; setTimeout(()=>box.style.display='none', 3000); }
+        
+        window.onload = () => {
+            load();
+            document.getElementById('app-shell').style.backgroundImage = `url(${CONFIG.bg})`;
+            document.getElementById('h-dp').src = CONFIG.dp;
+            ui(); grid();
+            setInterval(() => {
+                const idx = Math.floor(Math.random() * 4);
+                document.getElementById('top-ad').innerText = ADS_LIST[idx];
+                document.getElementById('bot-ad').innerText = ADS_LIST[(idx+1)%4];
+            }, 5000);
+        };
     </script>
 </body>
 </html>
