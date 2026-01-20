@@ -48,8 +48,9 @@
         /* विज्ञापन पट्टी */
         .ad-row { height: 40px; background: #111827; display: flex; align-items: center; padding: 0 12px; z-index: 10; border-bottom: 2px solid var(--accent); position: relative; }
         .ad-row.bottom { border-bottom: none; border-top: 2px solid var(--accent); }
-        .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; }
-        .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
+        .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; flex-shrink: 0; }
+        .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; margin-right: 10px; }
+        .ad-visit-btn { background: white; color: black; border: none; padding: 3px 10px; border-radius: 12px; font-size: 10px; font-weight: 900; cursor: pointer; text-decoration: none; flex-shrink: 0; }
 
         /* हेडर */
         header { 
@@ -176,9 +177,11 @@
     <div id="app-shell">
         <div class="tint"></div>
         
+        <!-- विज्ञापन पट्टी (टॉप) -->
         <div class="ad-row">
             <span class="ad-tag">समाचार</span>
-            <div id="top-ad" class="ad-scroll">संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा त्यागा।</div>
+            <div id="top-ad-text" class="ad-scroll">संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा त्यागा।</div>
+            <a id="top-ad-link" href="#" class="ad-visit-btn" target="_blank">Visit</a>
         </div>
 
         <header>
@@ -229,13 +232,15 @@
             <button id="auto-play-btn" onclick="startAuto()">ऑटो प्ले शुरू करें</button>
         </div>
 
+        <!-- विज्ञापन पट्टी (बॉटम) -->
         <div class="ad-row bottom">
             <span class="ad-tag">सामाजिक</span>
-            <div id="bot-ad" class="ad-scroll">बिना दहेज के रमैणी शादियां समाज में नया बदलाव ला रही हैं।</div>
+            <div id="bot-ad-text" class="ad-scroll">बिना दहेज के रमैणी शादियां समाज में नया बदलाव ला रही हैं।</div>
+            <a id="bot-ad-link" href="#" class="ad-visit-btn" target="_blank">Visit</a>
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- मोडल्स -->
     <div id="settings-modal" class="modal">
         <div class="m-top"><h2>सेटिंग्स</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
         <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड (उपयोग विधि)</button>
@@ -268,7 +273,7 @@
         </div>
     </div>
 
-    <!-- AUDIO ELEMENTS -->
+    <!-- ऑडियो एलिमेंट्स -->
     <audio id="m-player" preload="auto"></audio>
     <audio id="fx-player" preload="auto"></audio>
 
@@ -283,11 +288,12 @@
             audio: ["./assets/1.mp3", "./assets/2.mp3", "./assets/3.mp3", "./assets/4.mp3", "./assets/5.mp3", "./assets/6.mp3", "./assets/7.mp3"]
         };
 
-        const ADS_LIST = [
-            "नशा मुक्ति: संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा त्यागा।",
-            "दहेज मुक्त भारत: बिना लेन-देन के रमैणी शादियां।",
-            "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।",
-            "पवित्र पुस्तक 'जीने की राह': आज ही मंगवाएं।"
+        // विज्ञापन डाटा (टेक्स्ट, लिंक, और बटन का नाम अलग-अलग)
+        const ADS_DATA = [
+            { text: "नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।", link: "https://www.jagatgurusantrampalji.org/nasha-mukt-bharat", btn: "Visit" },
+            { text: "दहेज मुक्त भारत: बिना लेन-देन के रमैणी शादियां।", link: "https://www.jagatgurusantrampalji.org/dowry-free-india", btn: "See More" },
+            { text: "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।", link: "https://www.jagatgurusantrampalji.org/online-naam-diksha", btn: "Join Now" },
+            { text: "पवित्र पुस्तक 'जीने की राह': आज ही मंगवाएं।", link: "https://www.jagatgurusantrampalji.org/jeene-ki-raah", btn: "Order Book" }
         ];
 
         let state = {
@@ -335,12 +341,10 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
-                // Silent buffers
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Unlocked");
             }
         }
 
@@ -367,13 +371,8 @@
             
             btn.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Guaranteed Advance" Logic
             let job = new Promise((resolve) => {
-                // फेल-सेफ टाइमर: 10 सेकंड (या ऑडियो के अंत) तक इंतज़ार
-                const failSafe = setTimeout(() => { 
-                    console.log("Failsafe jump");
-                    m.pause(); resolve(); 
-                }, 10000 / state.spd); 
+                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 12000 / state.spd); 
 
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
@@ -396,11 +395,11 @@
                 state.count++; 
                 state.step = 0; 
                 state.roundEnd = true;
-                // काउंटर बढ़ने पर बेल की आवाज़
+                // काउंटर बढ़ने पर बेल की आवाज़ (Forcefully trigger)
                 if(state.mute !== 2) { 
                     f.src = ASSETS.bell; 
                     f.volume = state.vol; 
-                    f.play().catch(()=>{}); 
+                    f.play().catch(()=>{ console.log("Bell failed"); }); 
                 }
             } else { state.step++; }
             
@@ -441,11 +440,23 @@
             document.getElementById('h-dp').src = ASSETS.dp;
             document.getElementById('f-dp').src = ASSETS.dp;
             ui(); grid();
+            
+            // विज्ञापन लूप
+            let adIdx = 0;
             setInterval(() => {
-                const idx = Math.floor(Math.random() * 4);
-                document.getElementById('top-ad').innerText = ADS_LIST[idx];
-                document.getElementById('bot-ad').innerText = ADS_LIST[(idx+1)%4];
-            }, 5000);
+                adIdx = (adIdx + 1) % ADS_DATA.length;
+                const nextIdx = (adIdx + 1) % ADS_DATA.length;
+                
+                // टॉप एड अपडेट
+                document.getElementById('top-ad-text').innerText = ADS_DATA[adIdx].text;
+                document.getElementById('top-ad-link').href = ADS_DATA[adIdx].link;
+                document.getElementById('top-ad-link').innerText = ADS_DATA[adIdx].btn;
+                
+                // बॉटम एड अपडेट
+                document.getElementById('bot-ad-text').innerText = ADS_DATA[nextIdx].text;
+                document.getElementById('bot-ad-link').href = ADS_DATA[nextIdx].link;
+                document.getElementById('bot-ad-link').innerText = ADS_DATA[nextIdx].btn;
+            }, 6000);
         };
     </script>
 </body>
