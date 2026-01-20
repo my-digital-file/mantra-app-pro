@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="gu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -68,21 +68,21 @@
         .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
         .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
-        /* Fixed Counter View at Top */
+        /* Fixed Counter View at Top - Centered */
         .stats-box { 
             position: absolute; 
-            top: 120px; 
+            top: 100px; 
             left: 50%; 
             transform: translateX(-50%); 
             z-index: 5; 
             text-align: center; 
             width: 100%;
         }
-        #total-jap-num { font-size: 90px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
+        #total-jap-num { font-size: 95px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
         .jap-lbl { font-size: 11px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
         /* Button Grid Center */
-        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; z-index: 5; padding-bottom: 50px; }
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; z-index: 5; padding-bottom: 40px; }
         .grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
         .row { display: flex; gap: 18px; justify-content: center; width: 100%; }
 
@@ -161,7 +161,7 @@
         .m-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .close-btn { background: none; border: none; color: white; font-size: 45px; cursor: pointer; }
         
-        .bio-box { text-align: justify; font-size: 14px; line-height: 1.8; color: #cbd5e1; background: rgba(255,255,255,0.04); padding: 15px; border-radius: 15px; height: 250px; overflow-y: auto; margin: 15px 0; border: 1px solid rgba(255,255,255,0.05); }
+        .bio-box { text-align: justify; font-size: 14px; line-height: 1.8; color: #cbd5e1; background: rgba(255,255,255,0.04); padding: 15px; border-radius: 15px; height: 260px; overflow-y: auto; margin: 10px 0; border: 1px solid rgba(255,255,255,0.05); }
 
         .action-link { width: 100%; padding: 18px; background: #1e293b; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; text-align: center; text-decoration: none; display: block; transition: 0.2s; }
         .action-link:active { transform: scale(0.98); }
@@ -208,6 +208,7 @@
 
         <main>
             <div class="grid" id="main-grid">
+                <!-- Grid system remains 1-3-3 as requested before -->
                 <div class="row"><button id="btn-0" class="m-btn" onclick="userTap(0)"><span class="num-txt">1</span></button></div>
                 <div class="row">
                     <button id="btn-1" class="m-btn" onclick="userTap(1)"><span class="num-txt">2</span></button>
@@ -240,7 +241,7 @@
     <!-- Modals -->
     <div id="settings-modal" class="modal">
         <div class="m-top"><h2>Settings</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
-        <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड (Usage Guide)</button>
+        <button class="action-link" onclick="openModal('help-modal')">❓ App Guide (Usage Guide)</button>
         <button class="action-link" onclick="openModal('founder-modal')">👨‍💻 Meet Developer</button>
         <button class="action-link red" onclick="resetCounter()">🔄 Counter Zero Karein</button>
     </div>
@@ -253,7 +254,7 @@
             <p style="color:var(--accent); margin-bottom: 10px;">dineshsankhla804@gmail.com</p>
             
             <div class="bio-box">
-                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के आध्यात्मिक ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं। लाखों लोग उनके ज्ञान को समझकर सुखी जीवन जी रहे हैं।
+                જગતગુરુ તત્ત્વદર્શી સંત રામપાલ જી મહારાજ માર્ગદર્શન હેઠળ આ એપ બનાવવામાં આવી છે. મહારાજ જીનો મુખ્ય ઉદ્દેશ્ય વિશ્વમાં શાંતિ સ્થાપિત કરવાનો અને દરેક આત્માને મોક્ષનો માર્ગ બતાવવાનો છે. તેમણે પ્રમાણિત કર્યું છે કે કબીર સાહેબ જ અવિનાશી ભગવાન છે. મહારાજ જીના આધ્યાત્મિક જ્ઞાનથી આજે સમાજમાંથી દહેજ, નશા અને ભ્રષ્ટાચાર જેવી બદીઓ દૂર થઈ રહી છે. લાખો લોકો તેમના જ્ઞાનને સમજીને સુખી જીવન જીવી રહ્યા છે.
             </div>
             
             <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 Official Website</a>
@@ -263,10 +264,10 @@
     <div id="help-modal" class="modal">
         <div class="m-top"><h2>Help</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <div style="padding:10px; line-height:2.0; font-size:16px;">
-            1. <b>Jaap:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>Auto Play:</b> सब बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
-            3. <b>Sound:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
-            4. <b>Offline:</b> एक बार इंटरनेट से लोड होने पर यह बिना नेट के भी चलेगा।
+            1. <b>Jaap:</b> Keval chamakta hua button hi dabayein. Sato mantra pura hone par 1 jap count thashe.<br>
+            2. <b>Auto Play:</b> Badha buttons pote dabashe ane mantra vagse.<br>
+            3. <b>Sound:</b> Pehli var screen touch karta j awaaz chalu thashe.<br>
+            4. <b>Offline:</b> Ek var internet thi load thaya pachhi aa net vagar pan chalshe.
         </div>
     </div>
 
@@ -275,7 +276,7 @@
     <audio id="fx-player" preload="auto"></audio>
 
     <script>
-        // --- FINAL VERIFIED ASSETS ---
+        // --- FINAL VERIFIED CONFIG ---
         const ASSETS = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
@@ -298,9 +299,9 @@
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_final_verified_v2', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_final_verified_v3', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified_v2');
+            const data = localStorage.getItem('pm_v2026_final_verified_v3');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
@@ -337,16 +338,25 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
+                // Play silent buffers
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Unlocked Successfully");
+                console.log("Audio Active");
             }
         }
 
         async function userTap(i) {
             unlockEngine();
+            // Button sound trigger
+            if(state.mute !== 2) {
+                const fx = document.getElementById('fx-player');
+                fx.src = ASSETS.ting;
+                fx.volume = state.vol;
+                fx.play().catch(()=>{});
+            }
+
             if(state.roundEnd && i === 0) { state.roundEnd = false; state.step = 0; grid(); }
             if(i !== state.step || state.auto) return;
             state.roundEnd = false;
@@ -360,10 +370,8 @@
             
             b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Worker Logic" - Robust playing mechanism
             let job = new Promise((resolve) => {
                 const failSafe = setTimeout(() => { 
-                    console.log("Failsafe skip triggering...");
                     m.pause(); resolve(); 
                 }, 2000 / state.spd);
 
@@ -375,10 +383,10 @@
                     m.play().then(() => { 
                         m.onended = () => { clearTimeout(failSafe); resolve(); }; 
                     }).catch(() => { /* Timer handles failure */ });
-                } else if(state.mute === 1) {
-                    clearTimeout(failSafe); f.src = ASSETS.ting; f.volume = state.vol; f.play().catch(()=>{});
-                    setTimeout(resolve, 600 / state.spd);
-                } else { clearTimeout(failSafe); setTimeout(resolve, 400 / state.spd); }
+                } else {
+                    clearTimeout(failSafe);
+                    setTimeout(resolve, 500 / state.spd);
+                }
             });
 
             await job;
