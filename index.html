@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pratham Mantra - Sound Fixed</title>
+    <title>Pratham Mantra - Stable Edition</title>
     
     <!-- PWA Settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,10 +14,11 @@
         :root {
             --accent: #fbbf24;
             --bg-dark: #020617;
-            --glass: rgba(15, 23, 42, 0.96);
+            --glass: rgba(15, 23, 42, 0.98);
             --btn-size: 75px;
         }
 
+        /* Base Reset */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; margin: 0; padding: 0; }
         
         body { 
@@ -39,14 +40,15 @@
             flex-direction: column; 
             background-size: cover; 
             background-position: center; 
+            background-color: #020617;
         }
 
-        .tint { position: absolute; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(5px); z-index: 0; }
+        .tint { position: absolute; inset: 0; background: rgba(0,0,0,0.78); backdrop-filter: blur(5px); z-index: 0; }
 
-        /* Ad Strips */
+        /* Ad Strip */
         .ad-row { height: 40px; background: #111827; display: flex; align-items: center; padding: 0 12px; z-index: 10; border-bottom: 2px solid var(--accent); position: relative; }
         .ad-row.bottom { border-bottom: none; border-top: 2px solid var(--accent); }
-        .ad-tag { background: var(--accent); color: black; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; text-transform: uppercase; }
+        .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; }
         .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
 
         /* Header */
@@ -61,22 +63,22 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
         
-        .founder-btn { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .dp-box { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid var(--accent); position: relative; }
-        .dp-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
-        .blue-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 1.5px solid #000; color: white; }
+        .f-btn { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .dp-circle { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid var(--accent); position: relative; }
+        .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
+        .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 1.5px solid #000; color: white; }
 
-        /* Counter */
+        /* Counter View */
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; }
-        .stats { text-align: center; margin-bottom: 40px; }
-        #total-jap-num { font-size: 110px; font-weight: 900; line-height: 1; text-shadow: 0 10px 30px rgba(0,0,0,0.9); font-variant-numeric: tabular-nums; }
-        .count-lbl { font-size: 12px; color: var(--accent); letter-spacing: 6px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
+        .stats-box { text-align: center; margin-bottom: 40px; }
+        #total-jap-num { font-size: 100px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
+        .jap-lbl { font-size: 12px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
-        /* Grid Layout */
-        .btn-grid { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
+        /* Button Grid */
+        .grid { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
         .row { display: flex; gap: 20px; justify-content: center; width: 100%; }
 
-        /* Jaap Buttons */
+        /* 3D Mantra Buttons */
         .m-btn {
             width: var(--btn-size); 
             height: var(--btn-size); 
@@ -86,29 +88,32 @@
             box-shadow: 0 8px 0 #92400e, 0 15px 30px rgba(0,0,0,0.6);
             cursor: pointer; 
             position: relative; 
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex; 
             align-items: center; 
             justify-content: center; 
             overflow: hidden;
+            /* State: Locked (20%) */
             opacity: 0.2; 
-            filter: blur(4px) grayscale(0.9); 
+            filter: blur(4px) grayscale(0.8); 
             pointer-events: none;
         }
 
         .m-btn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        .m-btn .num-fallback { position: absolute; font-size: 28px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
+        .num-txt { position: absolute; font-size: 26px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
 
-        .m-btn.target { 
+        /* State: Target (75% + Border) */
+        .m-btn.active { 
             opacity: 0.75; 
             filter: blur(0); 
-            transform: scale(1.15); 
+            transform: scale(1.18); 
             border: 4px solid #fff; 
-            box-shadow: 0 0 40px var(--accent); 
+            box-shadow: 0 0 35px var(--accent); 
             pointer-events: auto;
             z-index: 10;
         }
         
+        /* State: Done (100% Green) */
         .m-btn.done { 
             opacity: 1 !important; 
             filter: none !important; 
@@ -118,15 +123,18 @@
             pointer-events: none; 
         }
 
-        .m-btn.round-over { opacity: 0.8; filter: blur(2px); pointer-events: auto; }
-        .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 #92400e; }
+        /* State: Round Over (80%) */
+        .m-btn.round-finished { opacity: 0.85; filter: blur(1.5px); pointer-events: auto; }
+
+        .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 transparent; }
 
         /* Footer */
         .footer { background: var(--glass); padding: 20px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
-        .ctrl-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .ctrl-line { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
         input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
         
-        .mode-btn { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; transition: 0.2s; border: none; color: white; }
+        .icon-btn { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; border: none; color: white; transition: 0.2s; }
+        .icon-btn:active { transform: scale(0.9); }
         
         #auto-play-btn { 
             width: 100%; 
@@ -145,111 +153,114 @@
         /* Modals */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; display: none; flex-direction: column; padding: 25px; animation: slideUp 0.3s forwards; }
         @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
-        .modal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close-x { background: none; border: none; color: white; font-size: 45px; cursor: pointer; }
+        .m-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .close-btn { background: none; border: none; color: white; font-size: 45px; cursor: pointer; }
         
-        .f-card { text-align: center; background: #0f172a; padding: 30px; border-radius: 35px; border: 1px solid #1e293b; }
-        .bio-box { text-align: justify; font-size: 15px; line-height: 1.8; color: #94a3b8; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px; height: 320px; overflow-y: auto; margin: 20px 0; border: 1px solid rgba(255,255,255,0.05); }
-        .action-btn { width: 100%; padding: 18px; background: #3b82f6; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .action-link { width: 100%; padding: 18px; background: #1e293b; color: white; border: none; border-radius: 15px; font-weight: 900; margin-top: 10px; cursor: pointer; font-size: 16px; transition: 0.2s; text-align: center; text-decoration: none; display: block; }
+        .action-link.red { background: #ef4444; }
 
     </style>
 </head>
-<body onclick="unlockSoundEngine()">
+<body onclick="unlockEngine()">
 
     <div id="app-shell">
         <div class="tint"></div>
         
         <div class="ad-row">
             <span class="ad-tag">Gyan</span>
-            <div id="ad-msg-top" class="ad-scroll">नशा मुक्ति अभियान: संत रामपाल जी महाराज के ज्ञान से लाखों ने नशा छोड़ा।</div>
+            <div id="top-ad" class="ad-scroll">नशा मुक्ति: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।</div>
         </div>
 
         <header>
-            <div class="founder-btn" onclick="openModal('founder-modal')">
+            <div class="f-btn" onclick="openModal('founder-modal')">
                 <div class="dp-box">
-                    <img id="hdr-dp-img" src="./assets/dp.png" alt="DP">
-                    <span class="blue-tick">✔</span>
+                    <img id="h-dp" src="./assets/dp.png" alt="DP">
+                    <span class="v-tick">✔</span>
                 </div>
                 <div>
                     <div style="font-weight: 900; color: var(--accent); font-size: 20px; letter-spacing: -0.5px;">प्रथम मंत्र</div>
                     <div style="font-size: 10px; color: #94a3b8; font-weight: 800;">Sant Rampal Ji Maharaj</div>
                 </div>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="mode-btn" style="background:none;" onclick="alert('Use Chrome/Safari Menu > Add to Home Screen')">📥</button>
-                <button class="mode-btn" style="background:none;" onclick="cycleMuteMode()" id="mute-icon-hdr">🔊</button>
-                <button class="mode-btn" style="background:none;" onclick="openModal('settings-modal')">⚙️</button>
+            <div style="display: flex; gap: 8px;">
+                <button class="icon-btn" style="background:none;" onclick="alert('Google Chrome Menu > Install App click karein')">📥</button>
+                <button class="icon-btn" style="background:none;" onclick="cycleMute()" id="mute-hdr">🔊</button>
+                <button class="icon-btn" style="background:none;" onclick="openModal('settings-modal')">⚙️</button>
             </div>
         </header>
 
         <main>
             <div class="stats">
                 <div id="total-jap-num">0</div>
-                <div class="count-lbl">Total Jaap Counting</div>
+                <div class="jap-lbl">Total Jaap Counting</div>
             </div>
 
-            <div class="btn-grid" id="grid-container">
-                <div class="row"><button id="btn-0" class="m-btn" onclick="onMantraClick(0)"><span class="num-fallback">1</span></button></div>
+            <div class="grid" id="main-grid">
+                <!-- Row 1 -->
+                <div class="row"><button id="btn-0" class="m-btn" onclick="userTap(0)"><span class="num-txt">1</span></button></div>
+                <!-- Row 2 -->
                 <div class="row">
-                    <button id="btn-1" class="m-btn" onclick="onMantraClick(1)"><span class="num-fallback">2</span></button>
-                    <button id="btn-2" class="m-btn" onclick="onMantraClick(2)"><span class="num-fallback">3</span></button>
-                    <button id="btn-3" class="m-btn" onclick="onMantraClick(3)"><span class="num-fallback">4</span></button>
+                    <button id="btn-1" class="m-btn" onclick="userTap(1)"><span class="num-txt">2</span></button>
+                    <button id="btn-2" class="m-btn" onclick="userTap(2)"><span class="num-txt">3</span></button>
+                    <button id="btn-3" class="m-btn" onclick="userTap(3)"><span class="num-txt">4</span></button>
                 </div>
+                <!-- Row 3 -->
                 <div class="row">
-                    <button id="btn-4" class="m-btn" onclick="onMantraClick(4)"><span class="num-fallback">5</span></button>
-                    <button id="btn-5" class="m-btn" onclick="onMantraClick(5)"><span class="num-fallback">6</span></button>
-                    <button id="btn-6" class="m-btn" onclick="onMantraClick(6)"><span class="num-fallback">7</span></button>
+                    <button id="btn-4" class="m-btn" onclick="userTap(4)"><span class="num-txt">5</span></button>
+                    <button id="btn-5" class="m-btn" onclick="userTap(5)"><span class="num-txt">6</span></button>
+                    <button id="btn-6" class="m-btn" onclick="userTap(6)"><span class="num-txt">7</span></button>
                 </div>
             </div>
         </main>
 
         <div class="footer">
-            <div class="ctrl-row">
-                <button class="mode-btn" onclick="switchSliderMode()" id="slider-mode-icon">⚡</button>
-                <input type="range" id="global-slider" min="1" max="100" value="50" oninput="handleSliderChange()">
-                <div id="slider-display-txt" style="width: 50px; text-align: center; font-weight: 900; font-size: 15px;">1.0x</div>
+            <div class="ctrl-line">
+                <button class="icon-btn" onclick="cycleMode()" id="sli-icon">⚡</button>
+                <input type="range" id="master-slider" min="1" max="100" value="50" oninput="handleSlider()">
+                <div id="sli-display" style="width: 50px; text-align: center; font-weight: 900; font-size: 15px;">1.0x</div>
             </div>
-            <button id="auto-play-btn" onclick="startAutoJaap()">Start Auto Jaap</button>
+            <button id="auto-play-btn" onclick="startAuto()">Start Auto Jaap</button>
         </div>
 
         <div class="ad-row bottom">
             <span class="ad-tag">Social</span>
-            <div id="ad-msg-bot" class="ad-scroll">दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां समाज में नया बदलाव ला रही हैं।</div>
+            <div id="bot-ad" class="ad-scroll">दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां समाज में नया बदलाव ला रही हैं।</div>
         </div>
     </div>
 
     <!-- Modals -->
     <div id="settings-modal" class="modal">
-        <div class="modal-top"><h2>Settings</h2><button class="close-x" onclick="closeModal('settings-modal')">×</button></div>
-        <button class="action-btn" style="background:#1e293b;" onclick="openModal('help-modal')">❓ ऐप कैसे इस्तेमाल करें?</button>
-        <button class="action-btn" style="background:#ef4444;" onclick="hardResetCount()">🔄 काउंटर जीरो करें</button>
-    </div>
-
-    <div id="help-modal" class="modal">
-        <div class="modal-top"><h2>Help Guide</h2><button class="close-x" onclick="closeModal('help-modal')">×</button></div>
-        <div style="line-height: 2.2; font-size: 16px;">
-            1. <b>आवाज़:</b> मंत्र सुनने के लिए अपना फ़ोन साइलेंट मोड से हटाएँ।<br>
-            2. <b>क्रम:</b> केवल चमकता हुआ बटन ही दबेगा। सातों पूरे होने पर गिनती बढ़ेगी।<br>
-            3. <b>ऑटो प्ले:</b> यह फीचर मंत्रों को खुद बजाएगा और काउंट बढ़ाएगा।<br>
-            4. <b>साउंड इंजन:</b> पहले बटन पर क्लिक करते ही ऑडियो एक्टिव हो जाएगा।
-        </div>
+        <div class="m-top"><h2>Settings</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
+        <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड</button>
+        <button class="action-link red" onclick="resetCounter()">🔄 काउंटर जीरो करें</button>
     </div>
 
     <div id="founder-modal" class="modal">
-        <div class="modal-top"><h2>Meet Developer</h2><button class="close-x" onclick="closeModal('founder-modal')">×</button></div>
-        <div class="f-card">
-            <img id="f-dp-big" src="./assets/dp.png" style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover;">
-            <h3 style="margin: 10px 0; font-size: 26px;">Dinesh Sankhla <span style="color:#3b82f6;">✔</span></h3>
-            <button class="action-btn" onclick="window.open('https://www.jagatgurusantrampalji.org','_blank')">🌐 Visit Official Website</button>
+        <div class="m-top"><h2>Developer</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
+        <div style="text-align:center; padding: 20px;">
+            <img src="./assets/dp.png" style="width:120px; height:120px; border-radius:50%; border:4px solid var(--accent); object-fit:cover;">
+            <h3 style="margin-top:15px; font-size:24px;">Dinesh Sankhla</h3>
+            <p style="color:var(--accent); margin-bottom: 20px;">dineshsankhla804@gmail.com</p>
+            <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 Official Website</a>
         </div>
     </div>
 
-    <!-- Hidden Audio Players -->
-    <audio id="player-mantra"></audio>
-    <audio id="player-fx"></audio>
+    <div id="help-modal" class="modal">
+        <div class="m-top"><h2>Help</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
+        <p style="padding:15px; line-height:2.0; font-size:16px;">
+            1. <b>Jaap:</b> Keval chamakta hua button hi dabayein.<br>
+            2. <b>Auto Play:</b> Sab buttons khud dabeinge aur counter badhega.<br>
+            3. <b>Offline:</b> Ek baar load hone par bina net ke chalega.<br>
+            4. <b>Reset:</b> Raat 12 baje count 0 ho jayega.
+        </p>
+    </div>
+
+    <audio id="m-player"></audio>
+    <audio id="fx-player"></audio>
 
     <script>
-        const ASSETS = {
+        // ASSETS SYNC
+        const CONFIG = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
             bell: "https://www.soundjay.com/buttons/sounds/beep-07.mp3",
@@ -260,199 +271,127 @@
 
         const ADS_LIST = [
             "नशा मुक्ति अभियान: संत रामपाल जी के ज्ञान से लाखों ने नशा त्यागा।",
-            "दहेज मुक्त भारत: बिना लेन-देन के हजारों 'रमैणी' शादियां हुई।",
-            "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट पर रजिस्टर करें।",
-            "पवित्र पुस्तक 'जीने की राह': इसे पढ़कर लाखों का जीवन सुखी हुआ।"
+            "दहेज मुक्त भारत: बिना लेन-देन के हजारों शादियां हुई।",
+            "निशुल्क नाम दीक्षा: मोक्ष हेतु आज ही वेबसाइट विजिट करें।",
+            "पवित्र पुस्तक 'जीने की राह': आज ही निःशुल्क मंगवाएं।"
         ];
 
-        let app = {
-            count: 0, 
-            step: 0, 
-            mute: 0, 
-            mode: 0, 
-            speed: 1.0, 
-            vol: 1.0, 
-            size: 75,
-            lastDate: new Date().toDateString(),
-            autoRunning: false,
-            roundFinished: false,
-            audioUnlocked: false
+        // APP LOGIC
+        let state = {
+            count: 0, step: 0, mute: 0, mode: 0, spd: 1.0, vol: 1.0, size: 75,
+            lastDate: new Date().toDateString(), auto: false, roundEnd: false, unlocked: false
         };
 
-        function saveState() { localStorage.setItem('pm_fixed_v15', JSON.stringify(app)); }
-        function loadState() {
-            const data = localStorage.getItem('pm_fixed_v15');
-            if(data) app = {...app, ...JSON.parse(data)};
-            if(app.lastDate !== new Date().toDateString()) {
-                app.count = 0;
-                app.lastDate = new Date().toDateString();
-                saveState();
+        function save() { localStorage.setItem('pm_v2026_stable_fix', JSON.stringify(state)); }
+        function load() {
+            const data = localStorage.getItem('pm_v2026_stable_fix');
+            if(data) state = {...state, ...JSON.parse(data)};
+            if(state.lastDate !== new Date().toDateString()) {
+                state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
         }
 
-        // --- Sound Engine Unlock ---
-        function unlockSoundEngine() {
-            if(!app.audioUnlocked) {
-                const mP = document.getElementById('player-mantra');
-                const fP = document.getElementById('player-fx');
-                // Play silence to bypass browser locks
-                mP.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                fP.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
-                
-                const p1 = mP.play();
-                const p2 = fP.play();
-                
-                Promise.all([p1, p2]).then(() => {
-                    app.audioUnlocked = true;
-                    console.log("Audio Engine Ready");
-                }).catch(e => console.log("Unlock waiting for click..."));
+        function unlockEngine() {
+            if(!state.unlocked) {
+                const m = document.getElementById('m-player');
+                const f = document.getElementById('fx-player');
+                m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+                f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+                m.play(); f.play();
+                state.unlocked = true;
             }
         }
 
-        window.onload = function() {
-            loadState();
-            document.getElementById('app-shell').style.backgroundImage = `url(${ASSETS.bg})`;
-            document.getElementById('hdr-dp-img').src = ASSETS.dp;
-            document.getElementById('f-dp-big').src = ASSETS.dp;
-            updateUI();
-            updateGrid();
-            startAdsLoop();
+        window.onload = () => {
+            load();
+            document.getElementById('app-shell').style.backgroundImage = `url(${CONFIG.bg})`;
+            document.getElementById('h-dp').src = CONFIG.dp;
+            ui(); grid(); ads();
         };
 
-        function updateUI() {
-            document.getElementById('total-jap-num').innerText = app.count;
-            const mIcons = ['🔊', '🎵', '🔇'];
-            document.getElementById('mute-icon-hdr').innerText = mIcons[app.mute];
-            const sIcons = ['⚡', '🔊', '📏'];
-            document.getElementById('slider-mode-icon').innerText = sIcons[app.mode];
-            const slider = document.getElementById('global-slider');
-            const display = document.getElementById('slider-display-txt');
-            if(app.mode === 0) { slider.value = (app.speed - 0.5) * 40; display.innerText = app.speed.toFixed(1) + 'x'; }
-            else if(app.mode === 1) { slider.value = app.vol * 100; display.innerText = Math.round(app.vol * 100) + '%'; }
-            else { slider.value = (app.size - 50) * 2; display.innerText = app.size + 'px'; }
+        function ui() {
+            document.getElementById('total-jap-num').innerText = state.count;
+            const mIcons = ['🔊', '🎵', '🔇'], sIcons = ['⚡', '🔊', '📏'];
+            document.getElementById('mute-hdr').innerText = mIcons[state.mute];
+            document.getElementById('sli-icon').innerText = sIcons[state.mode];
+            const sli = document.getElementById('master-slider'), dsp = document.getElementById('sli-display');
+            if(state.mode === 0) { sli.value = (state.spd - 0.5) * 40; dsp.innerText = state.spd.toFixed(1) + 'x'; }
+            else if(state.mode === 1) { sli.value = state.vol * 100; dsp.innerText = Math.round(state.vol * 100) + '%'; }
+            else { sli.value = (state.size - 50) * 2; dsp.innerText = state.size + 'px'; }
         }
 
-        function updateGrid() {
+        function grid() {
             for(let i=0; i<7; i++) {
-                const btn = document.getElementById(`btn-${i}`);
-                btn.style.setProperty('--btn-size', app.size + 'px');
-                btn.innerHTML = `<img src="${ASSETS.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-fallback">${i+1}</span>`;
-                btn.classList.remove('target', 'done', 'round-over');
-                if(app.roundFinished) btn.classList.add('round-over');
-                else if(i === app.step) btn.classList.add('target');
-                else if(i < app.step) btn.classList.add('done');
+                const b = document.getElementById(`btn-${i}`);
+                b.style.setProperty('--btn-size', state.size + 'px');
+                b.innerHTML = `<img src="${CONFIG.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-txt">${i+1}</span>`;
+                
+                b.classList.remove('active', 'done', 'round-finished');
+                if(state.roundEnd) b.classList.add('round-finished');
+                else if(i === state.step) b.classList.add('active');
+                else if(i < state.step) b.classList.add('done');
             }
         }
 
-        async function onMantraClick(idx) {
-            unlockSoundEngine(); // Fix: Force unlock on click
-            if(idx !== app.step || app.autoRunning) {
-                if(app.roundFinished && idx === 0) {
-                    app.roundFinished = false;
-                    app.step = 0;
-                    updateGrid();
-                }
-                return;
-            }
-            app.roundFinished = false;
-            await runStep(idx);
+        async function userTap(i) {
+            unlockEngine();
+            if(state.roundEnd && i === 0) { state.roundEnd = false; state.step = 0; grid(); }
+            if(i !== state.step || state.auto) return;
+            state.roundEnd = false;
+            await runStep(i);
         }
 
-        async function runStep(idx) {
-            const mPlayer = document.getElementById('player-mantra');
-            const fPlayer = document.getElementById('player-fx');
-            const btn = document.getElementById(`btn-${idx}`);
-
-            btn.style.transform = 'translateY(8px) scale(0.95)';
+        async function runStep(i) {
+            const m = document.getElementById('m-player'), f = document.getElementById('fx-player'), b = document.getElementById(`btn-${i}`);
+            b.style.transform = 'translateY(8px) scale(0.95)';
             
-            // "Worker Task" - Reliable Sound & Logic
-            let stepTask = new Promise((resolve) => {
-                const timer = setTimeout(resolve, 1400 / app.speed);
-
-                if(app.mute === 0) {
-                    mPlayer.src = ASSETS.audio[idx];
-                    mPlayer.playbackRate = app.speed;
-                    mPlayer.volume = app.vol;
-                    mPlayer.play().then(() => {
-                        mPlayer.onended = () => { clearTimeout(timer); resolve(); };
-                    }).catch(resolve);
-                } else if(app.mute === 1) {
-                    clearTimeout(timer);
-                    fPlayer.src = ASSETS.ting;
-                    fPlayer.volume = app.vol;
-                    fPlayer.play().catch(()=>{});
-                    setTimeout(resolve, 600 / app.speed);
-                } else {
-                    clearTimeout(timer);
-                    setTimeout(resolve, 400 / app.speed);
-                }
+            // "Guaranteed Step" - If audio fails, advance after timer
+            let job = new Promise((resolve) => {
+                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 1600 / state.spd);
+                if(state.mute === 0) {
+                    m.src = CONFIG.audio[i]; m.playbackRate = state.spd; m.volume = state.vol;
+                    m.play().then(() => { m.onended = () => { clearTimeout(failSafe); resolve(); }; }).catch(resolve);
+                } else if(state.mute === 1) {
+                    clearTimeout(failSafe); f.src = CONFIG.ting; f.volume = state.vol; f.play(); setTimeout(resolve, 600 / state.spd);
+                } else { clearTimeout(failSafe); setTimeout(resolve, 400 / state.spd); }
             });
 
-            await stepTask;
-            btn.style.transform = '';
+            await job;
+            b.style.transform = '';
 
-            if(idx === 6) {
-                app.count++;
-                app.step = 0;
-                app.roundFinished = true;
-                if(app.mute !== 2) {
-                    fPlayer.src = ASSETS.bell;
-                    fPlayer.volume = app.vol;
-                    fPlayer.play().catch(()=>{});
-                }
-            } else {
-                app.step++;
-            }
+            if(i === 6) {
+                state.count++; state.step = 0; state.roundEnd = true;
+                if(state.mute !== 2) { f.src = CONFIG.bell; f.volume = state.vol; f.play(); }
+            } else { state.step++; }
             
-            updateUI();
-            updateGrid();
-            saveState();
+            ui(); grid(); save();
         }
 
-        async function startAutoJaap() {
-            unlockSoundEngine();
-            if(app.autoRunning) return;
-            app.autoRunning = true;
-            app.roundFinished = false;
-            const btn = document.getElementById('auto-play-btn');
-            btn.innerText = "जाप जारी है...";
-            btn.style.opacity = '0.7';
-
-            app.step = 0;
-            updateGrid();
-
-            for(let i=0; i<7; i++) {
-                await runStep(i);
-            }
-
-            app.autoRunning = false;
-            btn.innerText = "Start Auto Jaap";
-            btn.style.opacity = '1';
+        async function startAuto() {
+            unlockEngine();
+            if(state.auto) return;
+            state.auto = true; state.roundEnd = false;
+            document.getElementById('auto-play-btn').innerText = "जाप जारी है...";
+            state.step = 0; grid();
+            for(let i=0; i<7; i++) await runStep(i);
+            state.auto = false; document.getElementById('auto-play-btn').innerText = "Start Auto Jaap";
         }
 
-        function handleSliderChange() {
-            const v = parseInt(document.getElementById('global-slider').value);
-            if(app.mode === 0) app.speed = 0.5 + (v / 40);
-            else if(app.mode === 1) app.vol = v / 100;
-            else app.size = 50 + (v / 2);
-            updateUI();
-            updateGrid();
-            saveState();
+        function handleSlider() {
+            const v = parseInt(document.getElementById('master-slider').value);
+            if(state.mode === 0) state.spd = 0.5 + (v / 40);
+            else if(state.mode === 1) state.vol = v / 100;
+            else state.size = 50 + (v / 2);
+            ui(); grid(); save();
         }
 
-        function switchSliderMode() { app.mode = (app.mode + 1) % 3; updateUI(); }
-        function cycleMuteMode() { app.mute = (app.mute + 1) % 3; updateUI(); saveState(); }
+        function cycleMode() { state.mode = (state.mode + 1) % 3; ui(); }
+        function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function hardResetCount() { if(confirm("काउंटर जीरो करें?")) { app.count = 0; app.step = 0; app.roundFinished = false; saveState(); updateUI(); updateGrid(); closeModal('settings-modal'); } }
-
-        function startAdsLoop() {
-            let i = 0;
-            setInterval(() => {
-                i++;
-                document.getElementById('ad-msg-top').innerText = ADS_LIST[i % ADS_LIST.length];
-                document.getElementById('ad-msg-bot').innerText = ADS_LIST[(i + 1) % ADS_LIST.length];
-            }, 5000);
+        function resetCounter() { if(confirm("Kya aap zero karna chahte hain?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function ads() {
+            setInterval(() => { const idx = Math.floor(Math.random() * 4); document.getElementById('top-ad').innerText = ADS_LIST[idx]; document.getElementById('bot-ad').innerText = ADS_LIST[(idx + 1) % 4]; }, 5000);
         }
     </script>
 </body>
