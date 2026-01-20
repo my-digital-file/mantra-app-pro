@@ -18,7 +18,7 @@
             --btn-size: 75px;
         }
 
-        /* बेसिक रिसेट */
+        /* Basic Reset */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; margin: 0; padding: 0; }
         
         body { 
@@ -51,7 +51,7 @@
         .ad-tag { background: var(--accent); color: black; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 900; margin-right: 10px; }
         .ad-scroll { flex: 1; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0; font-weight: 600; }
 
-        /* हेडर और डीपी फोटो */
+        /* हेडर */
         header { 
             height: 70px; 
             background: var(--glass); 
@@ -68,7 +68,7 @@
         .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
         .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
-        /* काउंटर की जगह - ऊपर बीच में */
+        /* काउंटर की जगह - टॉप सेंटर */
         .stats-box { 
             position: absolute; 
             top: 100px; 
@@ -86,7 +86,7 @@
         .grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
         .row { display: flex; gap: 18px; justify-content: center; width: 100%; }
 
-        /* मंत्र बटन स्टाइल */
+        /* मंत्र बटन */
         .m-btn {
             width: var(--btn-size); 
             height: var(--btn-size); 
@@ -132,7 +132,7 @@
 
         .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 transparent; }
 
-        /* कंट्रोल पैनल */
+        /* पाद (Footer) */
         .footer { background: var(--glass); padding: 18px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
         .ctrl-line { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    <!-- मोडल्स -->
+    <!-- Modals -->
     <div id="settings-modal" class="modal">
         <div class="m-top"><h2>सेटिंग्स</h2><button class="close-btn" onclick="closeModal('settings-modal')">×</button></div>
         <button class="action-link" onclick="openModal('help-modal')">❓ ऐप गाइड (उपयोग विधि)</button>
@@ -262,13 +262,13 @@
         <div class="m-top"><h2>सहायता</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <div style="padding:10px; line-height:2.0; font-size:16px;">
             1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
-            3. <b>आवाज़:</b> पहली बार स्क्रीन टच करते ही आवाज़ चालू होगी।<br>
-            4. <b>ऑफलाइन:</b> एक बार इंटरनेट से लोड होने के बाद यह बिना नेट के भी चलेगा।
+            2. <b>ऑटो प्ले:</b> सब बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
+            3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
+            4. <b>पूर्ण मंत्र:</b> अब मंत्र पूरा बजने के बाद ही अगला बटन खुलेगा।
         </div>
     </div>
 
-    <!-- ऑडियो एलिमेंट्स -->
+    <!-- AUDIO ELEMENTS -->
     <audio id="m-player" preload="auto"></audio>
     <audio id="fx-player" preload="auto"></audio>
 
@@ -296,9 +296,9 @@
         };
 
         // --- स्टोरेज ---
-        function save() { localStorage.setItem('pm_v2026_final_verified_v3', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_final_verified_v5', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified_v3');
+            const data = localStorage.getItem('pm_v2026_final_verified_v5');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
@@ -335,18 +335,18 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
-                // साइलेंट बफ़र्स प्ले करें
+                // Silent buffers
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Active");
+                console.log("Audio Unlocked");
             }
         }
 
         async function userTap(i) {
             unlockEngine();
-            // बटन साउंड ट्रिगर
+            // टिक-टिक आवाज़ ट्रिगर (अगर म्यूट नहीं है)
             if(state.mute !== 2) {
                 const fx = document.getElementById('fx-player');
                 fx.src = ASSETS.ting;
@@ -363,14 +363,17 @@
         async function runStep(i) {
             const m = document.getElementById('m-player');
             const f = document.getElementById('fx-player');
-            const b = document.getElementById(`btn-${i}`);
+            const btn = document.getElementById(`btn-${i}`);
             
-            b.style.transform = 'translateY(8px) scale(0.95)';
+            btn.style.transform = 'translateY(8px) scale(0.95)';
             
+            // "Guaranteed Advance" Logic
             let job = new Promise((resolve) => {
+                // फेल-सेफ टाइमर: 10 सेकंड (या ऑडियो के अंत) तक इंतज़ार
                 const failSafe = setTimeout(() => { 
+                    console.log("Failsafe jump");
                     m.pause(); resolve(); 
-                }, 10000 / state.spd); // मंत्र पूरा होने का इंतज़ार
+                }, 10000 / state.spd); 
 
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
@@ -387,10 +390,13 @@
             });
 
             await job;
-            b.style.transform = '';
+            btn.style.transform = '';
 
             if(i === 6) {
-                state.count++; state.step = 0; state.roundEnd = true;
+                state.count++; 
+                state.step = 0; 
+                state.roundEnd = true;
+                // काउंटर बढ़ने पर बेल की आवाज़
                 if(state.mute !== 2) { 
                     f.src = ASSETS.bell; 
                     f.volume = state.vol; 
