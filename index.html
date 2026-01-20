@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>प्रथम मंत्र - फाइनल स्टेबल</title>
+    <title>प्रथम मंत्र - सुपरफास्ट ऑफलाइन</title>
     
-    <!-- PWA Settings -->
+    <!-- PWA Settings for Offline Use -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#020617">
+    <link rel="manifest" href="data:application/manifest+json,{'name':'Pratham Mantra','short_name':'Mantra','start_url':'.','display':'standalone','background_color':'#020617','theme_color':'#020617'}">
 
     <style>
         :root {
@@ -69,7 +70,7 @@
         .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
         .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
-        /* काउंटर की जगह - टॉप सेंटर */
+        /* काउंटर की जगह - टॉप सेंटर पर फिक्स */
         .stats-box { 
             position: absolute; 
             top: 100px; 
@@ -213,6 +214,7 @@
 
         <main>
             <div class="grid" id="main-grid">
+                <!-- Grid layout: 1-3-3 -->
                 <div class="row"><button id="btn-0" class="m-btn" onclick="userTap(0)"><span class="num-txt">1</span></button></div>
                 <div class="row">
                     <button id="btn-1" class="m-btn" onclick="userTap(1)"><span class="num-txt">2</span></button>
@@ -268,9 +270,7 @@
             <div class="dev-footer">
                 <p style="color:#94a3b8; font-size: 14px; font-weight: bold;">Created by: Dinesh Sankhla</p>
                 <p style="color:#64748b; font-size: 11px;">dineshsankhla804@gmail.com</p>
-                <!-- WhatsApp button with custom link area -->
                 <a href="https://wa.me/918040000000" target="_blank" class="whatsapp-btn">
-                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412s-1.239 6.164-3.488 8.412c-2.246 2.247-5.232 3.486-8.412 3.486-2.099 0-4.146-.549-5.951-1.591L0 24.001zm6.704-17.067c-.145-.324-.295-.329-.43-.329s-.277-.001-.427-.001-.395.056-.601.282c-.206.227-.789.771-.789 1.883 0 1.112.81 2.186.922 2.337.113.15 1.59 2.429 3.853 3.404.538.233 1.045.385 1.488.527.601.192 1.147.164 1.579.1c.481-.072 1.481-.605 1.688-1.19.206-.585.206-1.084.145-1.19-.061-.106-.226-.17-.481-.297s-1.503-.742-1.734-.826-.395-.127-.561.127-.641.826-.786.993-.288.188-.544.061-1.077-.398-2.052-1.267c-.759-.678-1.272-1.517-1.421-1.771-.15-.254-.016-.391.111-.518.114-.114.254-.297.382-.445.127-.15.17-.254.254-.424.084-.17.042-.324-.021-.452-.063-.127-.544-1.312-.746-1.802z"/></svg>
                     WhatsApp 📲
                 </a>
             </div>
@@ -280,11 +280,10 @@
     <div id="help-modal" class="modal">
         <div class="m-top"><h2>सहायता</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <div style="padding:10px; line-height:2.0; font-size:16px;">
-            1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
-            3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
-            4. <b>साउंड चेक:</b> मंत्र बजने पर आवाज़ आएगी, और काउंटर बढ़ने पर 'बैल' की आवाज़ आएगी।<br>
-            5. <b>सेटिंग्स:</b> स्लाइडर में ⚡, 🔊, 📏 के बाद 🔔 आइकॉन से बटन और काउंटर की आवाज़ कंट्रोल करें।
+            1. <b>ऑफ़लाइन उपयोग:</b> एक बार ऑनलाइन लोड होने के बाद यह ऐप बिना नेट के भी चलेगा। <br>
+            2. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
+            3. <b>आवाज़:</b> मंत्र के साथ 'टिक-टिक' और काउंटर बढ़ने पर 'बैल' की आवाज़ आएगी।<br>
+            4. <b>सेटिंग्स:</b> स्लाइडर में ⚡, 🔊, 📏 के बाद 🔔 आइकॉन से आवाज़ कंट्रोल करें।
         </div>
     </div>
 
@@ -318,15 +317,13 @@
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_final_pro_v1', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_superfast_v1', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_pro_v1');
+            const data = localStorage.getItem('pm_v2026_superfast_v1');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
             }
-            // Ensure fxVol exists for old users
-            if(state.fxVol === undefined) state.fxVol = 1.0;
         }
 
         // --- UI REFRESH ---
@@ -365,6 +362,7 @@
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
+                console.log("Offline Engine Ready");
             }
         }
 
@@ -399,7 +397,7 @@
             let job = new Promise((resolve) => {
                 const failSafe = setTimeout(() => { 
                     m.pause(); resolve(); 
-                }, 12000 / state.spd); 
+                }, 10000 / state.spd); 
 
                 if(state.mute === 0) {
                     m.src = ASSETS.audio[i]; 
@@ -411,7 +409,7 @@
                     m.play().catch(() => { clearTimeout(failSafe); resolve(); });
                 } else {
                     clearTimeout(failSafe);
-                    setTimeout(resolve, 600 / state.spd);
+                    setTimeout(resolve, 500 / state.spd);
                 }
             });
 
@@ -458,7 +456,7 @@
         }
 
         function cycleMode() { 
-            state.mode = (state.mode + 1) % 4; // Now 4 modes
+            state.mode = (state.mode + 1) % 4; 
             ui(); 
         }
 
@@ -499,6 +497,21 @@
                 document.getElementById('bot-ad-link').innerText = ADS_DATA[nextIdx].btn;
             }, 6000);
         };
+
+        // Service Worker for Offline usage
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'pratham-mantra-v1';
+                self.addEventListener('install', e => {
+                    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(['./', './index.html'])));
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+                });
+            `;
+            const blob = new Blob([swCode], {type: 'text/javascript'});
+            navigator.serviceWorker.register(URL.createObjectURL(blob));
+        }
     </script>
 </body>
 </html>
