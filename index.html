@@ -53,7 +53,7 @@
 
         /* Header */
         header { 
-            height: 75px; 
+            height: 70px; 
             background: var(--glass); 
             display: flex; 
             align-items: center; 
@@ -63,20 +63,20 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
         
-        .f-btn { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .dp-circle { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid var(--accent); position: relative; }
+        .f-btn { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .dp-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent); position: relative; }
         .dp-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b; }
-        .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 1.5px solid #000; color: white; }
+        .v-tick { position: absolute; bottom: -2px; right: -2px; background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 1.5px solid #000; color: white; }
 
         /* Counter View */
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; }
-        .stats-box { text-align: center; margin-bottom: 40px; }
-        #total-jap-num { font-size: 100px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
-        .jap-lbl { font-size: 12px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
+        .stats-box { text-align: center; margin-bottom: 35px; }
+        #total-jap-num { font-size: 90px; font-weight: 900; line-height: 1; text-shadow: 0 8px 25px rgba(0,0,0,0.8); }
+        .jap-lbl { font-size: 11px; color: var(--accent); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-top: 5px; }
 
         /* Button Grid */
-        .grid { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
-        .row { display: flex; gap: 20px; justify-content: center; width: 100%; }
+        .grid { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; }
+        .row { display: flex; gap: 18px; justify-content: center; width: 100%; }
 
         /* Mantra Buttons */
         .m-btn {
@@ -93,19 +93,20 @@
             align-items: center; 
             justify-content: center; 
             overflow: hidden;
+            /* State: Locked (20%) */
             opacity: 0.2; 
             filter: blur(4px) grayscale(0.8); 
             pointer-events: none;
         }
 
         .m-btn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        .num-txt { position: absolute; font-size: 26px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
+        .num-txt { position: absolute; font-size: 24px; font-weight: 900; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); display: none; }
 
         .m-btn.active { 
             opacity: 0.75; 
             filter: blur(0); 
-            transform: scale(1.18); 
-            border: 4px solid #fff; 
+            transform: scale(1.15); 
+            border: 3.5px solid #fff; 
             box-shadow: 0 0 35px var(--accent); 
             pointer-events: auto;
             z-index: 10;
@@ -125,21 +126,22 @@
         .m-btn:active { transform: translateY(8px) scale(0.95); box-shadow: 0 0 0 transparent; }
 
         /* Footer */
-        .footer { background: var(--glass); padding: 20px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
-        .ctrl-line { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .footer { background: var(--glass); padding: 18px; border-radius: 25px 25px 0 0; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1); }
+        .ctrl-line { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         input[type=range] { flex: 1; accent-color: var(--accent); height: 8px; cursor: pointer; border-radius: 10px; }
         
-        .icon-btn { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 24px; border: none; color: white; transition: 0.2s; }
+        .icon-btn { width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px; border: none; color: white; transition: 0.2s; }
+        .icon-btn:active { transform: scale(0.9); }
         
         #auto-play-btn { 
             width: 100%; 
-            padding: 18px; 
-            border-radius: 18px; 
+            padding: 16px; 
+            border-radius: 15px; 
             border: none; 
             background: linear-gradient(to right, #f59e0b, #ea580c); 
             color: white; 
             font-weight: 900; 
-            font-size: 18px; 
+            font-size: 16px; 
             cursor: pointer; 
             box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4); 
             text-transform: uppercase; 
@@ -166,19 +168,19 @@
         <div class="tint"></div>
         
         <div class="ad-row">
-            <span class="ad-tag">Gyan</span>
+            <span class="ad-tag">News</span>
             <div id="top-ad" class="ad-scroll">Sant Rampal Ji Maharaj ke gyan se lakho ne nasha tyaga.</div>
         </div>
 
         <header>
             <div class="f-btn" onclick="openModal('founder-modal')">
-                <div class="dp-box">
+                <div class="dp-circle">
                     <img id="h-dp" src="./assets/dp.png" alt="DP">
                     <span class="v-tick">✔</span>
                 </div>
                 <div>
-                    <div style="font-weight: 900; color: var(--accent); font-size: 20px; letter-spacing: -0.5px;">Pratham Mantra</div>
-                    <div style="font-size: 10px; color: #94a3b8; font-weight: 800;">Sant Rampal Ji Maharaj</div>
+                    <div style="font-weight: 900; color: var(--accent); font-size: 18px; letter-spacing: -0.5px;">Pratham Mantra</div>
+                    <div style="font-size: 9px; color: #94a3b8; font-weight: 800;">Sant Rampal Ji Maharaj</div>
                 </div>
             </div>
             <div style="display: flex; gap: 8px;">
@@ -234,7 +236,7 @@
     <div id="founder-modal" class="modal">
         <div class="m-top"><h2>Developer</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
         <div style="text-align:center; padding: 20px;">
-            <img src="./assets/dp.png" style="width:120px; height:120px; border-radius:50%; border:4px solid var(--accent); object-fit:cover;">
+            <img id="f-dp" src="./assets/dp.png" style="width:100px; height:100px; border-radius:50%; border:4px solid var(--accent); object-fit:cover;">
             <h3 style="margin-top:15px; font-size:24px;">Dinesh Sankhla</h3>
             <p style="color:var(--accent); margin-bottom: 20px;">dineshsankhla804@gmail.com</p>
             <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 Official Website</a>
@@ -256,8 +258,8 @@
     <audio id="fx-player" preload="auto"></audio>
 
     <script>
-        // CONFIG
-        const CONFIG = {
+        // --- FINAL VERIFIED CONFIG ---
+        const ASSETS = {
             bg: "./assets/bg.jpg",
             dp: "./assets/dp.png",
             bell: "https://www.soundjay.com/buttons/sounds/beep-07.mp3",
@@ -279,9 +281,9 @@
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_super_fix', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_super_stable', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_super_fix');
+            const data = localStorage.getItem('pm_v2026_super_stable');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
@@ -304,7 +306,8 @@
             for(let i=0; i<7; i++) {
                 const b = document.getElementById(`btn-${i}`);
                 b.style.setProperty('--btn-size', state.size + 'px');
-                b.innerHTML = `<img src="${CONFIG.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-txt">${i+1}</span>`;
+                b.innerHTML = `<img src="${ASSETS.images[i]}" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><span class="num-txt">${i+1}</span>`;
+                
                 b.classList.remove('active', 'done', 'round-finished');
                 if(state.roundEnd) b.classList.add('round-finished');
                 else if(i === state.step) b.classList.add('active');
@@ -317,11 +320,12 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
+                // Force load tiny silent buffers to wake audio context
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
                 state.unlocked = true;
-                console.log("Audio Enabled");
+                console.log("Audio Unlocked");
             }
         }
 
@@ -340,27 +344,25 @@
             
             b.style.transform = 'translateY(8px) scale(0.95)';
             
+            // "Worker Logic" - Advances even if audio fails to load
             let job = new Promise((resolve) => {
-                const failSafe = setTimeout(() => { m.pause(); resolve(); }, 1800 / state.spd);
-                
+                const failSafe = setTimeout(() => { 
+                    console.log("Failsafe skip");
+                    m.pause(); resolve(); 
+                }, 2000 / state.spd);
+
                 if(state.mute === 0) {
-                    m.src = CONFIG.audio[i];
+                    m.src = ASSETS.audio[i]; 
                     m.load();
-                    m.playbackRate = state.spd;
+                    m.playbackRate = state.spd; 
                     m.volume = state.vol;
-                    m.play().then(() => {
-                        m.onended = () => { clearTimeout(failSafe); resolve(); };
-                    }).catch(resolve);
+                    m.play().then(() => { 
+                        m.onended = () => { clearTimeout(failSafe); resolve(); }; 
+                    }).catch(() => { /* Auto resolves by timer */ });
                 } else if(state.mute === 1) {
-                    clearTimeout(failSafe);
-                    f.src = CONFIG.ting;
-                    f.volume = state.vol;
-                    f.play().catch(()=>{});
+                    clearTimeout(failSafe); f.src = ASSETS.ting; f.volume = state.vol; f.play().catch(()=>{});
                     setTimeout(resolve, 600 / state.spd);
-                } else {
-                    clearTimeout(failSafe);
-                    setTimeout(resolve, 400 / state.spd);
-                }
+                } else { clearTimeout(failSafe); setTimeout(resolve, 400 / state.spd); }
             });
 
             await job;
@@ -368,7 +370,7 @@
 
             if(i === 6) {
                 state.count++; state.step = 0; state.roundEnd = true;
-                if(state.mute !== 2) { f.src = CONFIG.bell; f.volume = state.vol; f.play().catch(()=>{}); }
+                if(state.mute !== 2) { f.src = ASSETS.bell; f.volume = state.vol; f.play().catch(()=>{}); }
             } else { state.step++; }
             
             ui(); grid(); save();
@@ -397,13 +399,16 @@
         function cycleMute() { state.mute = (state.mute + 1) % 3; ui(); save(); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function resetCounter() { if(confirm("Zero karein?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } }
+        function resetCounter() { 
+            if(confirm("Zero karein?")) { state.count = 0; state.step = 0; state.roundEnd = false; save(); ui(); grid(); closeModal('settings-modal'); } 
+        }
         function showMsg(txt) { const box = document.getElementById('msg-box'); box.innerText = txt; box.style.display = 'block'; setTimeout(()=>box.style.display='none', 3000); }
         
         window.onload = () => {
             load();
-            document.getElementById('app-shell').style.backgroundImage = `url(${CONFIG.bg})`;
-            document.getElementById('h-dp').src = CONFIG.dp;
+            document.getElementById('app-shell').style.backgroundImage = `url(${ASSETS.bg})`;
+            document.getElementById('h-dp').src = ASSETS.dp;
+            document.getElementById('f-dp').src = ASSETS.dp;
             ui(); grid();
             setInterval(() => {
                 const idx = Math.floor(Math.random() * 4);
