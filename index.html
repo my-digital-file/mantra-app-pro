@@ -167,6 +167,10 @@
         .action-link:active { transform: scale(0.98); }
         .action-link.red { background: #ef4444; }
 
+        .dev-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .whatsapp-btn { display: inline-flex; align-items: center; background: #25D366; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 13px; margin-top: 10px; transition: 0.2s; }
+        .whatsapp-btn:active { transform: scale(0.95); opacity: 0.9; }
+
         #msg-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: black; padding: 12px 24px; border-radius: 12px; font-weight: 900; z-index: 200; display: none; }
     </style>
 </head>
@@ -249,17 +253,25 @@
     </div>
 
     <div id="founder-modal" class="modal">
-        <div class="m-top"><h2>डेवलपर जानकारी</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
+        <div class="m-top"><h2>Sant Rampal Ji Maharaj App</h2><button class="close-btn" onclick="closeModal('founder-modal')">×</button></div>
         <div style="text-align:center; padding: 10px;">
             <img id="f-dp" src="./assets/dp.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--accent); object-fit:cover;">
-            <h3 style="margin-top:10px; font-size:22px;">दिनेश सांखला</h3>
-            <p style="color:var(--accent); margin-bottom: 10px;">dineshsankhla804@gmail.com</p>
             
             <div class="bio-box">
-                जगतगुरु तत्वदर्शी संत रामपाल जी महाराज के मार्गदर्शन में इस ऐप का निर्माण किया गया है। महाराज जी का मुख्य उद्देश्य विश्व में शांति स्थापित करना और हर आत्मा को मोक्ष का मार्ग दिखाना है। उन्होंने प्रमाणित किया है कि कबीर साहेब ही अविनाशी भगवान हैं। महाराज जी के आध्यात्मिक ज्ञान से आज समाज से दहेज, नशा और भ्रष्टाचार जैसी बुराइयां खत्म हो रही हैं। लाखों लोग उनके ज्ञान को समझकर सुखी जीवन जी रहे हैं।
+                <b>जगतगुरु तत्वदर्शी संत रामपाल जी महाराज:</b><br><br>
+                संत रामपाल जी महाराज वर्तमान में पूरे विश्व में एकमात्र तत्वदर्शी संत हैं। उन्होंने अपने आध्यात्मिक ज्ञान के माध्यम से प्रमाणित किया है कि कबीर साहेब ही अविनाशी पूर्ण परमात्मा हैं। <br><br>
+                महाराज जी का मुख्य उद्देश्य समाज से नशा, दहेज और भ्रष्टाचार जैसी बुराइयों को जड़ से खत्म करना और हर आत्मा को शास्त्रानुकूल भक्ति मार्ग दिखाकर मोक्ष प्राप्त करवाना है। उनके मार्गदर्शन में लाखों परिवार आज सुखी और शांत जीवन व्यतीत कर रहे हैं। बिना किसी दान-दहेज के 'रमैणी' विधि से की जाने वाली शादियां समाज में एक नई क्रांति ला रही हैं।
             </div>
             
             <a href="https://www.jagatgurusantrampalji.org" target="_blank" class="action-link" style="background:#3b82f6;">🌐 अधिकारिक वेबसाइट</a>
+
+            <div class="dev-footer">
+                <p style="color:#94a3b8; font-size: 14px; font-weight: bold;">Created by: Dinesh Sankhla</p>
+                <p style="color:#64748b; font-size: 11px;">dineshsankhla804@gmail.com</p>
+                <a href="https://wa.me/yourlinkhere" target="_blank" class="whatsapp-btn">
+                    WhatsApp 📲
+                </a>
+            </div>
         </div>
     </div>
 
@@ -267,9 +279,9 @@
         <div class="m-top"><h2>सहायता</h2><button class="close-btn" onclick="closeModal('help-modal')">×</button></div>
         <div style="padding:10px; line-height:2.0; font-size:16px;">
             1. <b>जाप:</b> केवल चमकता हुआ बटन ही दबायें। सातों मंत्र पूरे होने पर 1 जाप काउंट होगा।<br>
-            2. <b>ऑटो प्ले:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
+            2. <b>Auto Play:</b> सभी बटन्स खुद दबेंगे और मंत्र बजेंगे।<br>
             3. <b>आवाज़:</b> पहली बार स्क्रीन टच करने पर आवाज़ चालू होगी।<br>
-            4. <b>पूर्ण मंत्र:</b> अब मंत्र पूरा बजने के बाद ही अगला बटन खुलेगा।
+            4. <b>साउंड चेक:</b> मंत्र बजने पर आवाज़ आएगी, और काउंटर बढ़ने पर 'बैल' की आवाज़ आएगी।
         </div>
     </div>
 
@@ -301,9 +313,9 @@
         };
 
         // --- STORAGE ---
-        function save() { localStorage.setItem('pm_v2026_final_verified_v10', JSON.stringify(state)); }
+        function save() { localStorage.setItem('pm_v2026_final_verified_v11', JSON.stringify(state)); }
         function load() {
-            const data = localStorage.getItem('pm_v2026_final_verified_v10');
+            const data = localStorage.getItem('pm_v2026_final_verified_v11');
             if(data) state = {...state, ...JSON.parse(data)};
             if(state.lastDate !== new Date().toDateString()) {
                 state.count = 0; state.lastDate = new Date().toDateString(); save();
@@ -340,7 +352,6 @@
             if(!state.unlocked) {
                 const m = document.getElementById('m-player');
                 const f = document.getElementById('fx-player');
-                // Kickstart audio
                 m.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 f.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
                 m.play().catch(()=>{}); f.play().catch(()=>{});
@@ -377,7 +388,6 @@
             btn.style.transform = 'translateY(8px) scale(0.95)';
             
             let job = new Promise((resolve) => {
-                // फेल-सेफ टाइमर: ऑडियो न चलने पर 2 सेकंड बाद खुद आगे बढ़ेगा
                 const failSafe = setTimeout(() => { 
                     m.pause(); resolve(); 
                 }, 10000 / state.spd); 
@@ -392,7 +402,6 @@
                     m.play().catch(() => { clearTimeout(failSafe); resolve(); });
                 } else {
                     clearTimeout(failSafe);
-                    // टिक टिक मोड में तेज़ी से आगे बढ़ेगा
                     setTimeout(resolve, 600 / state.spd);
                 }
             });
@@ -404,11 +413,11 @@
                 state.count++; 
                 state.step = 0; 
                 state.roundEnd = true;
-                // काउंटर बढ़ने पर बेल की आवाज़
+                // काउंटर बढ़ने पर बेल की आवाज़
                 if(state.mute !== 2) { 
                     f.src = ASSETS.bell; 
                     f.volume = state.vol; 
-                    f.play().catch(()=>{}); 
+                    f.play().catch(()=>{ console.log("Bell sound failed"); }); 
                 }
             } else { state.step++; }
             
@@ -423,10 +432,10 @@
             document.getElementById('auto-play-btn').innerText = "जाप जारी है...";
             state.step = 0; grid();
             for(let i=0; i<7; i++) {
-                if(!state.auto) break; // Allow stopping if needed later
+                if(!state.auto) break;
                 await runStep(i);
             }
-            state.auto = false; document.getElementById('auto-play-btn').innerText = "ऑટો પ્લે શરૂ કરો";
+            state.auto = false; document.getElementById('auto-play-btn').innerText = "ऑटो प्ले शुरू करें";
         }
 
         function handleSlider() {
